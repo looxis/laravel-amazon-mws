@@ -3,7 +3,7 @@
 Simple Amazon MWS API Package for Laravel
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/looxis/laravel-amazon-mws.svg?style=flat-square)](https://packagist.org/packages/looxis/laravel-amazon-mws)
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/looxis/laravel-amazon-mws/run-tests?label=tests)
+![Travis (.org)](https://img.shields.io/travis/looxis/laravel-amazon-mws)
 [![StyleCI](https://styleci.io/repos/242777921/shield?branch=master)](https://styleci.io/repos/242777921)
 [![Total Downloads](https://img.shields.io/packagist/dt/looxis/laravel-amazon-mws.svg?style=flat-square)](https://packagist.org/packages/looxis/laravel-amazon-mws)
 
