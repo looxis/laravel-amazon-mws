@@ -2,9 +2,7 @@
 
 namespace Looxis\LaravelAmazonMWS\Tests;
 
-use DateTime;
 use GuzzleHttp\Client;
-use GuzzleHttp\Exception\BadResponseException;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
@@ -15,7 +13,7 @@ use Orchestra\Testbench\TestCase;
 class MWSOrdersTest extends TestCase
 {
     /** @test */
-    function it_gets_an_amazon_order()
+    public function it_gets_an_amazon_order()
     {
         $content = file_get_contents('mocks/fetchOrder.xml', true);
 
@@ -28,9 +26,8 @@ class MWSOrdersTest extends TestCase
         $client = new Client(['handler' => $handlerStack]);
         $mwsClient = new MWSClient($client);
         $mwsOrders = new MWSOrders($mwsClient);
-        $response = $mwsOrders->get("1234");
+        $response = $mwsOrders->get('1234');
         $this->assertIsArray($response);
-        $this->assertArrayHasKey("GetOrderResult", $response);
-
+        $this->assertArrayHasKey('GetOrderResult', $response);
     }
 }
