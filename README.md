@@ -43,10 +43,30 @@ Using the AmazonMWS you can fetch orders via the orders service class:
 $orderResponse = AmazonMWS::orders()->get("1234-1234-1234"); //get amazon order by id
 ```
 
+## Testing
+
+``` bash
+composer test
+```
+
+## Changelog
+
+Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
+
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 Please make sure to update tests as appropriate.
+
+## Security
+
+If you discover any security related issues, please email dev@looxis.com instead of using the issue tracker.
+
+## Credits
+
+- [Christian Stefener](https://github.com/ChrisSFR)
+- [Jannik Malken](https://github.com/mannikj)
+- [All Contributors](../../contributors)
 
 ## License
 [MIT](./LICENSE.md)

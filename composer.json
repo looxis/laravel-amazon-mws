@@ -39,5 +39,8 @@
                 "AmazonMWS": "Looxis\\LaravelAmazonMWS\\Facades\\AmazonMWS"
             }
         }
+    },
+    "scripts": {
+        "test": "phpunit"
     }
 }
