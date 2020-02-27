@@ -24,11 +24,12 @@ class MWSOrders
         $params = [];
 
         foreach ($ids as $key => $id) {
-            $keyName = 'AmazonOrderId.Id.' . ($key + 1);
+            $keyName = 'AmazonOrderId.Id.'.($key + 1);
             $params[$keyName] = $id;
         }
-        
-        $response = $this->client->post('GetOrder', '/Orders/' . self::VERSION, self::VERSION, $params);
+
+        $response = $this->client->post('GetOrder', '/Orders/'.self::VERSION, self::VERSION, $params);
+
         return $this->parseResponse($response);
     }
 

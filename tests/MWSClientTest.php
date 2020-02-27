@@ -3,14 +3,13 @@
 namespace Looxis\LaravelAmazonMWS\Tests;
 
 use DateTime;
-use GuzzleHttp\Client;
 use Looxis\LaravelAmazonMWS\MWSClient;
 use Orchestra\Testbench\TestCase;
 
 class MWSClientTest extends TestCase
 {
     /** @test */
-    function get_time_stamp()
+    public function get_time_stamp()
     {
         $client = new MWSClient();
         $timestamp = $client->getTimeStamp();
@@ -18,14 +17,14 @@ class MWSClientTest extends TestCase
     }
 
     /** @test */
-    function get_domain()
+    public function get_domain()
     {
         $client = new MWSClient();
         $this->assertEquals('mws-eu.amazonservices.com', $client->getDomain());
     }
 
     /** @test */
-    function set_access_key()
+    public function set_access_key()
     {
         $client = new MWSClient();
         $client->setAccessKeyId('1234');
@@ -33,7 +32,7 @@ class MWSClientTest extends TestCase
     }
 
     /** @test */
-    function set_seller_id()
+    public function set_seller_id()
     {
         $client = new MWSClient();
         $client->setSellerId('12345');
@@ -41,39 +40,38 @@ class MWSClientTest extends TestCase
     }
 
     /** @test */
-    function get_signature_method()
+    public function get_signature_method()
     {
         $client = new MWSClient();
         $this->assertEquals('HmacSHA256', $client->getSignatureMethod());
     }
 
     /** @test */
-    function get_signature_version()
+    public function get_signature_version()
     {
         $client = new MWSClient();
         $this->assertEquals('2', $client->getSignatureVersion());
     }
 
     /** @test */
-    function get_default_query_params()
+    public function get_default_query_params()
     {
         $mwsClient = new MWSClient();
         $params = $mwsClient->getDefaultQueryParams('GetOrder', '2013-09-01');
         $this->assertIsArray($params);
-        $this->assertArrayHasKey("AWSAccessKeyId", $params);
-        $this->assertArrayHasKey("Action", $params);
-        $this->assertArrayHasKey("MarketplaceId.Id.1", $params);
-        $this->assertArrayHasKey("SellerId", $params);
-        $this->assertArrayHasKey("SignatureMethod", $params);
-        $this->assertArrayHasKey("SignatureVersion", $params);
-        $this->assertArrayHasKey("Timestamp", $params);
-        $this->assertArrayHasKey("Version", $params);
+        $this->assertArrayHasKey('AWSAccessKeyId', $params);
+        $this->assertArrayHasKey('Action', $params);
+        $this->assertArrayHasKey('MarketplaceId.Id.1', $params);
+        $this->assertArrayHasKey('SellerId', $params);
+        $this->assertArrayHasKey('SignatureMethod', $params);
+        $this->assertArrayHasKey('SignatureVersion', $params);
+        $this->assertArrayHasKey('Timestamp', $params);
+        $this->assertArrayHasKey('Version', $params);
     }
 
-
     /** @test */
-    function post_request()
+    public function post_request()
     {
-        $this->markTestIncomplete("TODO");
+        $this->markTestIncomplete('TODO');
     }
 }

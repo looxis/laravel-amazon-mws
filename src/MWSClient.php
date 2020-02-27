@@ -8,7 +8,6 @@ use Looxis\LaravelAmazonMWS\Exceptions\CountryNotAvailableException;
 
 class MWSClient
 {
-
     const SIGNATURE_METHOD = 'HmacSHA256';
     const SIGNATURE_VERSION = '2';
     const DATE_FORMAT = "Y-m-d\TH:i:s.\\0\\0\\0\\Z";
@@ -58,7 +57,7 @@ class MWSClient
         'TR' => 'A33AVAJ2PDY3EV',
         'SG' => 'A19VAU5U5O7RUS',
         'AU' => 'A39IBJ37TRP1C6',
-        'JP' => 'A1VC38T7YXB528'
+        'JP' => 'A1VC38T7YXB528',
     ];
 
     public function __construct(Client $client = null)
@@ -89,6 +88,7 @@ class MWSClient
     public function setAccessKeyId($key)
     {
         $this->accessKeyId = $key;
+
         return $this;
     }
 
@@ -100,6 +100,7 @@ class MWSClient
     public function setSellerId($id)
     {
         $this->sellerId = $id;
+
         return $this;
     }
 
@@ -118,9 +119,10 @@ class MWSClient
         $mainMarketPlace = $this->marketPlaces[0];
         if ($mainMarketPlace) {
             $marketPlaceId = $this->countries[$mainMarketPlace];
+
             return $this->marketplaceIds[$marketPlaceId];
         }
-        
+
         throw new CountryIsMissingException();
     }
 
@@ -133,6 +135,7 @@ class MWSClient
     {
         if (in_array($country, array_keys($this->countries))) {
             $this->country = $country;
+
             return $this;
         } else {
             throw new CountryNotAvailableException();
@@ -144,22 +147,23 @@ class MWSClient
         return $this->marketplaceIds;
     }
 
-    public function post($action = null, $path = null, $version, $params = [])
+    public function post($action, $path, $version, $params = [])
     {
         $headers = [
             'Accept' => 'application/xml',
-            'x-amazon-user-agent' => self::APPLICATION_NAME . '/' . self::APPLICATION_VERSION
+            'x-amazon-user-agent' => self::APPLICATION_NAME.'/'.self::APPLICATION_VERSION,
         ];
         $requestOptions = [
             'headers' => $headers,
             'body' => null,
-            'query' => $this->getQuery($path, $action, $version, $params)
+            'query' => $this->getQuery($path, $action, $version, $params),
         ];
 
-        $uri = 'https://' . $this->getDomain() . $path;
-        $response =  $this->client->post($uri, $requestOptions);
-        $xmlResponse =  simplexml_load_string($response->getBody()->getContents());
+        $uri = 'https://'.$this->getDomain().$path;
+        $response = $this->client->post($uri, $requestOptions);
+        $xmlResponse = simplexml_load_string($response->getBody()->getContents());
         $json = json_encode($xmlResponse);
+
         return json_decode($json, true);
     }
 
@@ -172,11 +176,12 @@ class MWSClient
             'SellerId' => $this->getSellerId(),
             'SignatureMethod' => $this->getSignatureMethod(),
             'SignatureVersion' => $this->getSignatureVersion(),
-            'Version' => $version
+            'Version' => $version,
         ];
         $queryParameters = array_merge($queryParameters, $this->getMarketPlaceParams());
         $queryParameters = array_merge($queryParameters, $params);
         ksort($queryParameters);
+
         return $queryParameters;
     }
 
@@ -184,9 +189,10 @@ class MWSClient
     {
         $params = [];
         foreach ($this->marketPlaces as $index => $marketPlace) {
-            $keyName = 'MarketplaceId.Id.' . ($index + 1);
+            $keyName = 'MarketplaceId.Id.'.($index + 1);
             $params[$keyName] = $this->countries[$marketPlace];
         }
+
         return $params;
     }
 
@@ -198,12 +204,12 @@ class MWSClient
     public function getQueryStringForSignature($path, $action, $version, $params = [])
     {
         return  'POST'
-                    . "\n"
-                    . $this->getDomain()
-                    . "\n"
-                    . $path
-                    . "\n"
-                    . $this->generateRequestUri($action, $version, $params);
+                    ."\n"
+                    .$this->getDomain()
+                    ."\n"
+                    .$path
+                    ."\n"
+                    .$this->generateRequestUri($action, $version, $params);
     }
 
     public function generateSignature($path, $action, $version, $params = [])
@@ -216,6 +222,7 @@ class MWSClient
                 true
             )
         );
+
         return $signature;
     }
 
@@ -223,6 +230,7 @@ class MWSClient
     {
         $queryParameters = $this->getDefaultQueryParams($action, $version, $params);
         $queryParameters['Signature'] = $this->generateSignature($path, $action, $version, $params);
+
         return $queryParameters;
     }
 }

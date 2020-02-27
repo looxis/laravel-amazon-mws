@@ -2,11 +2,8 @@
 
 namespace Looxis\LaravelAmazonMWS;
 
-use GuzzleHttp\Client;
-
 class MWSService
 {
-
     public function __construct(MWSClient $mwsClient = null)
     {
         $this->mwsClient = $mwsClient ?: new MWSClient();
@@ -21,5 +18,4 @@ class MWSService
     {
         $this->mwsClient->setMarketPlaces($countries);
     }
-
 }
