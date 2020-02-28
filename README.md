@@ -9,8 +9,8 @@
 Simple Amazon Marketplace Web Service API Package for Laravel
 
 This package is under development. Currently we have only implemented the endpoits we use.
-Feel free to add the endpoints you need[contribute](#contributing).
-A List of all available endpoints you can see under the [road map](#road-map)
+Feel free to add the endpoints you need ([contribute](#contributing)).
+A List of all available endpoints you can see under the endpoint [road map](#road-map)
 
 ## Contents
 
@@ -95,7 +95,7 @@ Laravel Amazon MWS is still under development. We have only added the endpoits w
 
 Endpoint List:
 
-- [x] Orders [MWS Overview](https://docs.developer.amazonservices.com/en_US/orders-2013-09-01/Orders_Overview.html)
+- [x] Orders ([MWS Documentation Overview](https://docs.developer.amazonservices.com/en_US/orders-2013-09-01/Orders_Overview.html))
     - [x] ListOrders
     - [ ] ListOrdersByNextToken
     - [x] GetOrder
@@ -111,7 +111,7 @@ Endpoint List:
 composer test
 ```
 
-<a name="changelog></a>
+<a name="changelog"></a>
 ## Changelog
 
 Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
@@ -132,6 +132,11 @@ If you discover any security related issues, please email dev@looxis.com instead
 - [Christian Stefener](https://github.com/ChrisSFR)
 - [Jannik Malken](https://github.com/mannikj)
 - [All Contributors](../../contributors)
+
+## About us
+LOOXIS GmbH based in Minden, Germany.
+
+LOOXIS is a manufacturer of personalised gift articles, which are sold throughout Europe in (photo) specialist shops and via our online shop under [www.looxis.com](https://looxis.de).
 
 <a name="license"></a>
 ## License
