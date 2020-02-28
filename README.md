@@ -21,6 +21,7 @@ A List of all available endpoints you can see under the endpoint [road map](#roa
     - [Marketplaces](#marketplaces)
     - [Orders](#orders)
 	    - [Get Order](#get-order)
+    - [Responses](#responses)
     - [Exceptions](#exceptions)
 - [Road Map](#road-map)
 - [Testing](#testing)
@@ -82,7 +83,7 @@ Amazon MWS authenticates you via the [Canonicalized Query String](https://docs.d
 If you need to change the marketplaces just set the country/countries in your code via the MWS Facade.
 For simplicity the package chooses the right endpoint and market place id via the given country.
 You do not have to set them by yourself.
-[Amazon MWS endpoints and Market Place IDS Overview](https://docs.developer.amazonservices.com/en_US/dev_guide/DG_Endpoints.html) If something is missing do not hesitate to create an issue.
+([Amazon MWS endpoints and Market Place IDS Overview](https://docs.developer.amazonservices.com/en_US/dev_guide/DG_Endpoints.html)) If something is missing do not hesitate to create an issue.
 
 ```php
 AmazonMWS::setMarketplaces('FR'); 
@@ -108,6 +109,21 @@ $ordersResponse = AmazonMWS::orders()->get("1234-1234-1234", "123-123-123"); //g
 - maximum request quota of six and a restore rate of one request every minute.
 [MWS Throttling Algorithm](https://docs.developer.amazonservices.com/en_US/dev_guide/DG_Throttling.html)
 - Throws a ServerException with `Request is throttled`
+
+<a name="responses"></a>
+### Responses
+The Amazon MWS XML responses are parsed and will be casted into a convenient array structure:
+GetOrder Response Example:
+
+```php
+[
+    "request_id" => "be781aff-3c63-485a-aec8-951ed3be2ba4",
+    "data" => [
+        "AmazonOrderId" => "902-3159896-1390916",
+        ...
+    ]
+]
+```
 
 <a name="exceptions"></a>
 ### Exceptions

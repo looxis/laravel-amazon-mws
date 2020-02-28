@@ -35,6 +35,11 @@ class MWSOrders
 
     protected function parseResponse($response)
     {
-        return $response;
+        $requestId = data_get($response, 'ResponseMetadata.RequestId');
+        $orders = data_get($response, 'GetOrderResult.Orders.Order');
+        return [
+            'request_id' => $requestId,
+            'data' => $orders
+        ];
     }
 }

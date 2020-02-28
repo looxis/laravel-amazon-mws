@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add Scrutinizer
 - Advanced Readme
 - Add guzzle client timeout
+- parsed and casted order responses
 
 ## [0.0.1] - 2020-02-27
 ### Added
