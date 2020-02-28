@@ -21,6 +21,7 @@ A List of all available endpoints you can see under the endpoint [road map](#roa
     - [Marketplaces](#marketplaces)
     - [Orders](#orders)
 	    - [Get Order](#get-order)
+    - [Exceptions](#exceptions)
 - [Road Map](#road-map)
 - [Testing](#testing)
 - [Changelog](#changelog)
@@ -96,10 +97,20 @@ Retrieve order information that you need.
 Returns orders based on the AmazonOrderId values that you specify.
 
 ```php
-$orderResponse = AmazonMWS::orders()->get("1234-1234-1234"); //get amazon order by id
+$ordersResponse = AmazonMWS::orders()->get("1234-1234-1234"); //get amazon order by id
 
-$orderResponse = AmazonMWS::orders()->get("1234-1234-1234", "123-123-123"); //get multiple orders
+$ordersResponse = AmazonMWS::orders()->get("1234-1234-1234", "123-123-123"); //get multiple orders
 ```
+##### Throttling
+- maximum request quota of six and a restore rate of one request every minute.
+- Throws a ServerException with `Request is throttled`
+
+<a name="exceptions"></a>
+### Exceptions
+The Laravel Amazon MWS package does not catch the Exceptions returned by guzzle. 
+For Example for throttling ServerExceptions or missing Parameter Client Exceptions.
+
+
 <a name="road-map"></a>
 ## Endpoint Road map
 

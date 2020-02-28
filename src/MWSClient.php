@@ -66,7 +66,7 @@ class MWSClient
         $this->secretKey = config('amazon-mws.secret_key');
         $this->sellerId = config('amazon-mws.seller_id');
         $this->marketPlaces = ['DE'];
-        $this->client = $client ?: new Client();
+        $this->client = $client ?: new Client(['timeout'  => 60]);
     }
 
     public function setMarketPlaces($countryCodes)
