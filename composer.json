@@ -1,19 +1,30 @@
 {
     "name": "looxis/laravel-amazon-mws",
     "description": "Simple Amazon MWS API Package for Laravel",
+    "keywords": [
+        "looxis",
+        "amazon",
+        "mws",
+        "amazon-mws",
+        "laravel-amazon-mws"
+    ],
+    "homepage": "https://github.com/looxis/laravel-amazon-mws",
     "type": "library",
     "license": "MIT",
     "authors": [
         {
             "name": "Christian Stefener",
-            "email": "christian.stefener@looxis.de"
+            "email": "christian.stefener@looxis.de",
+            "role": "Developer"
         },
         {
             "name": "Jannik Malken",
-            "email": "jannik.malken@looxis.de"
+            "email": "jannik.malken@looxis.de",
+            "role": "Developer"
         }
     ],
     "require": {
+        "php": "^7.3",
         "guzzlehttp/guzzle": "^6.5"
     },
     "autoload": {

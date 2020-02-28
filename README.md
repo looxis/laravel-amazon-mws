@@ -33,6 +33,7 @@ A List of all available endpoints you can see under the endpoint [road map](#roa
 Link to the [Official Amazon MWS Documentation](https://docs.developer.amazonservices.com/en_US/dev_guide/index.html)
 
 ## Installation
+This package requires PHP 7.3 and Laravel 6.0 or higher.
 
 Require the package using composer:
 
@@ -101,9 +102,9 @@ Retrieve order information that you need.
 Returns orders based on the AmazonOrderId values that you specify.
 
 ```php
-$ordersResponse = AmazonMWS::orders()->get("1234-1234-1234"); //get amazon order by id
+$response = AmazonMWS::orders()->get("1234-1234-1234"); //get amazon order by id
 
-$ordersResponse = AmazonMWS::orders()->get("1234-1234-1234", "123-123-123"); //get multiple orders
+$response = AmazonMWS::orders()->get("1234-1234-1234", "123-123-123"); //get multiple orders
 ```
 ##### Throttling
 - maximum request quota of six and a restore rate of one request every minute.
@@ -112,7 +113,7 @@ $ordersResponse = AmazonMWS::orders()->get("1234-1234-1234", "123-123-123"); //g
 
 <a name="responses"></a>
 ### Responses
-The Amazon MWS XML responses are parsed and will be casted into a convenient array structure:
+The Amazon MWS XML responses are parsed and will be casted into a convenient array structure.
 GetOrder Response Example:
 
 ```php
