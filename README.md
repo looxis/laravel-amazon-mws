@@ -1,20 +1,29 @@
 # Laravel Amazon MWS
 
-Simple Amazon Marketplace Web Service API Package for Laravel
-
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/looxis/laravel-amazon-mws.svg?style=flat-square)](https://packagist.org/packages/looxis/laravel-amazon-mws)
 ![Travis (.org)](https://img.shields.io/travis/looxis/laravel-amazon-mws)
 [![StyleCI](https://styleci.io/repos/242777921/shield?branch=master)](https://styleci.io/repos/242777921)
-![Scrutinizer build (GitHub/Bitbucket)](https://img.shields.io/scrutinizer/build/g/looxis/laravel-amazon-mws/master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/looxis/laravel-amazon-mws/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/looxis/laravel-amazon-mws/?branch=master)
+
+Simple Amazon Marketplace Web Service API Package for Laravel
+
+This package is under development. Currently we have only implemented the endpoits we use.
+Feel free to add the endpoints [contribute](#contributing).
+A List of all available endpoints you can see under the [road map](#road-map)
 
 ## Contents
 
 - [Installation](#installation)
+- [Configuration](#configuration)
 - [Usage](#usage)
+    - [Marketplace](#marketplace)
 	- [Get Order](#get-order)
-- [Configuration (optional)](#configuration)
+- [Road Map](#road-map)
+- [Testing](#testing)
 - [Changelog](#changelog)
+- [Contributing](#contributing)
+- [Security](#security)
 - [License](#license)
 
 [Official Amazon MWS Documentation](https://docs.developer.amazonservices.com/en_US/dev_guide/index.html)
@@ -31,21 +40,11 @@ The package will automatically register itself.
 
 Add your Environment Variables for MWS to your .env File. The variable names are listed in the amazon-mws.php [config file](#configuration).
 
-
-<a name="usage"></a>
-## Usage
-
-<a name="get-order"></a>
-### Get Order
-
-```php
-$orderResponse = AmazonMWS::orders()->get("1234-1234-1234"); //get amazon order by id
-
-$orderResponse = AmazonMWS::orders()->get("1234-1234-1234", "123-123-123"); //get multiple orders
-```
-
 <a name="configuration"></a>
 ## Configuration
+
+To successfully authenticate with the Amazon Marketplace Web Service you need to add the Environment variables to your `.env` File. The variable names are listed in the amazon-mws.php [config file](#configuration).
+Also you can set a default marketplace.
 
 You can optionally publish the configuration with:
 
@@ -53,7 +52,7 @@ You can optionally publish the configuration with:
 $ php artisan vendor:publish --provider="Looxis\LaravelAmazonMWS\AmazonMWSServiceProvider" --tag="config"
 ```
 
-This will create a `amazon-mws.php` in your config directory.
+This will create an `amazon-mws.php` in your config directory.
 
 This is the content of the published config file:
 
@@ -68,21 +67,47 @@ return [
 ];
 ```
 
+<a name="usage"></a>
+## Usage
+
+<a name="marketplace"></a>
+### Marketplace
+If you need to dynamically change the marketplaces you want to use, just set them in your code via the MWS Facade:
+
+```php
+AmazonMWS::setMarketplaces('FR'); 
+
+AmazonMWS::setMarketplaces('DE', 'FR');  //to append multiple marketplaces to your request query strings.
+```
+
+<a name="get-order"></a>
+### Get Order
+
+```php
+$orderResponse = AmazonMWS::orders()->get("1234-1234-1234"); //get amazon order by id
+
+$orderResponse = AmazonMWS::orders()->get("1234-1234-1234", "123-123-123"); //get multiple orders
+```
+
+<a name="testing"></a>
 ## Testing
 
 ``` bash
 composer test
 ```
 
+<a name="changelog></a>
 ## Changelog
 
 Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
 
+<a name="contributing"></a>
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 Please make sure to update tests as appropriate.
 
+<a name="security"></a>
 ## Security
 
 If you discover any security related issues, please email dev@looxis.com instead of using the issue tracker.
@@ -93,5 +118,6 @@ If you discover any security related issues, please email dev@looxis.com instead
 - [Jannik Malken](https://github.com/mannikj)
 - [All Contributors](../../contributors)
 
+<a name="license"></a>
 ## License
 [MIT](./LICENSE.md)
