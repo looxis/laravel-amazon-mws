@@ -88,11 +88,12 @@ AmazonMWS::setMarketplaces('DE', 'FR');  //to append multiple marketplaces to yo
 
 <a name="orders"></a>
 ### Orders
-
+Retrieve order information that you need.
 [Amazon MWS Orders Documentation Overview](https://docs.developer.amazonservices.com/en_US/orders-2013-09-01/Orders_Overview.htm)
 
 <a name="get-order"></a>
 #### Get Order
+Returns orders based on the AmazonOrderId values that you specify.
 
 ```php
 $orderResponse = AmazonMWS::orders()->get("1234-1234-1234"); //get amazon order by id
