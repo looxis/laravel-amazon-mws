@@ -19,7 +19,8 @@ A List of all available endpoints you can see under the endpoint [road map](#roa
 - [Usage](#usage)
     - [Authentication](#authentication)
     - [Marketplaces](#marketplaces)
-	- [Get Order](#get-order)
+    - [Orders](#orders)
+	    - [Get Order](#get-order)
 - [Road Map](#road-map)
 - [Testing](#testing)
 - [Changelog](#changelog)
@@ -77,7 +78,7 @@ Amazon MWS authenticates you via the [Canonicalized Query String](https://docs.d
 
 <a name="marketplaces"></a>
 ### Marketplaces
-If you need to change the marketplaces you want to use, just set them in your code via the MWS Facade:
+If you need to change the marketplaces just set them in your code via the MWS Facade:
 
 ```php
 AmazonMWS::setMarketplaces('FR'); 
@@ -85,8 +86,13 @@ AmazonMWS::setMarketplaces('FR');
 AmazonMWS::setMarketplaces('DE', 'FR');  //to append multiple marketplaces to your request query strings.
 ```
 
+<a name="orders"></a>
+### Orders
+
+[Amazon MWS Orders Documentation Overview](https://docs.developer.amazonservices.com/en_US/orders-2013-09-01/Orders_Overview.htm)
+
 <a name="get-order"></a>
-### Get Order
+#### Get Order
 
 ```php
 $orderResponse = AmazonMWS::orders()->get("1234-1234-1234"); //get amazon order by id
