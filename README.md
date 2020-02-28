@@ -147,6 +147,26 @@ Endpoint List:
     - [ ] ListOrderItemsByNextToken
     - [ ] GetServiceStatus
     - [ ] Orders Datatypes
+- [x] Feeds ([MWS Documentation Overview](https://docs.developer.amazonservices.com/en_US/feeds/Feeds_Overview.html))
+    - [ ] SubmitFeed
+    - [ ] GetFeedSubmissionList
+    - [ ] GetFeedSubmissionListByNextToken
+    - [ ] GetFeedSubmissionCount
+    - [ ] CancelFeedSubmissions
+    - [ ] GetFeedSubmissionResult
+- [ ] Easy Ship ([MWS Documentation Overview](https://docs.developer.amazonservices.com/en_US/easy_ship/EasyShip_Overview.html))
+- [ ] Finances ([MWS Documentation Overview](https://docs.developer.amazonservices.com/en_US/finances/Finances_Overview.html))
+- [ ] FulFillment Inbound Shipment ([MWS Documentation Overview](https://docs.developer.amazonservices.com/en_US/fba_inbound/FBAInbound_Overview.html))
+- [ ] FulFillment Inventory ([MWS Documentation Overview](https://docs.developer.amazonservices.com/en_US/fba_inventory/FBAInventory_Overview.html))
+- [ ] FulFillment Outbound Shipment ([MWS Documentation Overview](https://docs.developer.amazonservices.com/en_US/fba_outbound/FBAOutbound_Overview.html))
+- [ ] Merchant Fulfillment ([MWS Documentation Overview](https://docs.developer.amazonservices.com/en_US/merch_fulfill/MerchFulfill_Overview.html))
+- [ ] Products ([MWS Documentation Overview](https://docs.developer.amazonservices.com/en_US/products/Products_Overview.html))
+- [ ] Recommendations ([MWS Documentation Overview](https://docs.developer.amazonservices.com/en_US/recommendations/Recommendations_Overview.html))
+- [ ] Reports ([MWS Documentation Overview](https://docs.developer.amazonservices.com/en_US/reports/Reports_Overview.html))
+- [ ] Sellers ([MWS Documentation Overview](https://docs.developer.amazonservices.com/en_US/sellers/Sellers_Overview.html))
+- [ ] Shipment Invoicing ([MWS Documentation Overview](https://docs.developer.amazonservices.com/en_US/shipment_invoicing/ShipmentInvoicing_Overview.html))
+- [ ] Subscriptions ([MWS Documentation Overview](https://docs.developer.amazonservices.com/en_US/subscriptions/Subscriptions_Overview.html))
+
 
 <a name="testing"></a>
 ## Testing
