@@ -28,6 +28,7 @@ class MWSOrdersTest extends TestCase
         $mwsOrders = new MWSOrders($mwsClient);
         $response = $mwsOrders->get('1234');
         $this->assertIsArray($response);
-        $this->assertArrayHasKey('GetOrderResult', $response);
+        $this->assertArrayHasKey('request_id', $response);
+        $this->assertArrayHasKey('data', $response);
     }
 }
