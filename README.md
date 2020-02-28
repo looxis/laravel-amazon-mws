@@ -104,14 +104,6 @@ Endpoint List:
     - [ ] GetServiceStatus
     - [ ] Orders Datatypes
 
-And here are some ideas I'm still not sure about:
-
-- [ ] Email Subscription & auto send emails on new content.
-- [ ] Configure roles (Contributor / Admin)
-- [ ] Localization
-- [ ] Multi-lingual content
-- [ ] Attach metadata to posts and pages.
-
 <a name="testing"></a>
 ## Testing
 
