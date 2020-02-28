@@ -8,16 +8,17 @@
 
 Simple Amazon Marketplace Web Service API Package for Laravel
 
-This package is under development. Currently we have only implemented the endpoits we use.
+This package is under development. Currently we have only implemented the endpoints we are using.
 Feel free to add the endpoints you need ([contribute](#contributing)).
-A List of all available endpoints you can see under the endpoint [road map](#road-map)
+A List of all available endpoints you can see under the endpoint [road map](#road-map).
 
 ## Contents
 
 - [Installation](#installation)
 - [Configuration](#configuration)
 - [Usage](#usage)
-    - [Marketplace](#marketplace)
+    - [Authentication](#authentication)
+    - [Marketplaces](#marketplaces)
 	- [Get Order](#get-order)
 - [Road Map](#road-map)
 - [Testing](#testing)
@@ -26,7 +27,7 @@ A List of all available endpoints you can see under the endpoint [road map](#roa
 - [Security](#security)
 - [License](#license)
 
-[Official Amazon MWS Documentation](https://docs.developer.amazonservices.com/en_US/dev_guide/index.html)
+Link to the [Official Amazon MWS Documentation](https://docs.developer.amazonservices.com/en_US/dev_guide/index.html)
 
 ## Installation
 
@@ -54,7 +55,7 @@ $ php artisan vendor:publish --provider="Looxis\LaravelAmazonMWS\AmazonMWSServic
 
 This will create an `amazon-mws.php` in your config directory.
 
-This is the content of the published config file:
+Config file content with the env variables:
 
 ```php
 <?php
@@ -70,9 +71,13 @@ return [
 <a name="usage"></a>
 ## Usage
 
-<a name="marketplace"></a>
-### Marketplace
-If you need to dynamically change the marketplaces you want to use, just set them in your code via the MWS Facade:
+<a name="authentication"></a>
+### Authentication
+Amazon MWS authenticates you via the [Canonicalized Query String](https://docs.developer.amazonservices.com/en_US/dev_guide/DG_QueryString.html). The Laravel Amazon MWS Package handles this for you and adds the string for each request. You just have to add your seller specific credentials to your .env file ([configuration](#configuration)).
+
+<a name="marketplaces"></a>
+### Marketplaces
+If you need to change the marketplaces you want to use, just set them in your code via the MWS Facade:
 
 ```php
 AmazonMWS::setMarketplaces('FR'); 
