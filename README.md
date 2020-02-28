@@ -9,7 +9,7 @@
 Simple Amazon Marketplace Web Service API Package for Laravel
 
 This package is under development. Currently we have only implemented the endpoits we use.
-Feel free to add the endpoints [contribute](#contributing).
+Feel free to add the endpoints you need[contribute](#contributing).
 A List of all available endpoints you can see under the [road map](#road-map)
 
 ## Contents
@@ -88,6 +88,29 @@ $orderResponse = AmazonMWS::orders()->get("1234-1234-1234"); //get amazon order 
 
 $orderResponse = AmazonMWS::orders()->get("1234-1234-1234", "123-123-123"); //get multiple orders
 ```
+<a name="road-map"></a>
+## Endpoint Road map
+
+Laravel Amazon MWS is still under development. We have only added the endpoits we currently are using ourself. We decided to ship it in this early stage so you can help to add some endpoits or use  the already existing.
+
+Endpoint List:
+
+- [x] Orders [MWS Overview](https://docs.developer.amazonservices.com/en_US/orders-2013-09-01/Orders_Overview.html)
+    - [x] ListOrders
+    - [ ] ListOrdersByNextToken
+    - [x] GetOrder
+    - [ ] ListOrderItems
+    - [ ] ListOrderItemsByNextToken
+    - [ ] GetServiceStatus
+    - [ ] Orders Datatypes
+
+And here are some ideas I'm still not sure about:
+
+- [ ] Email Subscription & auto send emails on new content.
+- [ ] Configure roles (Contributor / Admin)
+- [ ] Localization
+- [ ] Multi-lingual content
+- [ ] Attach metadata to posts and pages.
 
 <a name="testing"></a>
 ## Testing
