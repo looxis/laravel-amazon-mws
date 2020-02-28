@@ -79,7 +79,10 @@ Amazon MWS authenticates you via the [Canonicalized Query String](https://docs.d
 
 <a name="marketplaces"></a>
 ### Marketplaces
-If you need to change the marketplaces just set them in your code via the MWS Facade:
+If you need to change the marketplaces just set the country/countries in your code via the MWS Facade.
+For simplicity the package chooses the right endpoint and market place id via the given country.
+You do not have to set them by yourself.
+[Amazon MWS endpoints and Market Place IDS Overview](https://docs.developer.amazonservices.com/en_US/dev_guide/DG_Endpoints.html) If something is missing do not hesitate to create an issue.
 
 ```php
 AmazonMWS::setMarketplaces('FR'); 
@@ -103,6 +106,7 @@ $ordersResponse = AmazonMWS::orders()->get("1234-1234-1234", "123-123-123"); //g
 ```
 ##### Throttling
 - maximum request quota of six and a restore rate of one request every minute.
+[MWS Throttling Algorithm](https://docs.developer.amazonservices.com/en_US/dev_guide/DG_Throttling.html)
 - Throws a ServerException with `Request is throttled`
 
 <a name="exceptions"></a>
@@ -119,7 +123,7 @@ Laravel Amazon MWS is still under development. We have only added the endpoits w
 Endpoint List:
 
 - [x] Orders ([MWS Documentation Overview](https://docs.developer.amazonservices.com/en_US/orders-2013-09-01/Orders_Overview.html))
-    - [x] ListOrders
+    - [ ] ListOrders
     - [ ] ListOrdersByNextToken
     - [x] GetOrder
     - [ ] ListOrderItems
