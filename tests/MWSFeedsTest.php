@@ -8,7 +8,6 @@ use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
 use Looxis\LaravelAmazonMWS\MWSClient;
 use Looxis\LaravelAmazonMWS\MWSFeeds;
-use Looxis\LaravelAmazonMWS\MWSOrders;
 use Orchestra\Testbench\TestCase;
 
 class MWSFeedsTest extends TestCase
