@@ -137,9 +137,10 @@ $response = AmazonMWS::feeds()
 [MWS Throttling Algorithm](https://docs.developer.amazonservices.com/en_US/dev_guide/DG_Throttling.html)
 - Throws a ServerException with `Request is throttled`
 
-<a name="responses"></a>
-### Responses
+##### Responses
 The Amazon MWS XML responses are parsed and will be casted into a convenient array structure.
+For checking if the Feed was successful you need to check the result via the [GetSubmissionFeedResult](https://docs.developer.amazonservices.com/en_US/feeds/Feeds_GetFeedSubmissionResult.html) endpoint.
+
 SubmitFeedResponse Example:
 
 ```php
@@ -154,6 +155,22 @@ SubmitFeedResponse Example:
 ]
 ```
 
+<a name="responses"></a>
+### General Responses
+
+[Response Format Documentation](https://docs.developer.amazonservices.com/en_US/dev_guide/DG_ResponseFormat.html)
+The Amazon MWS XML responses are parsed and will be casted into a convenient array structure.
+GetOrder Response Example:
+
+```php
+[
+    "request_id" => "be781aff-3c63-485a-aec8-951ed3be2ba4",
+    "data" => [
+        "AmazonOrderId" => "902-3159896-1390916",
+        ...
+    ]
+]
+
 <a name="exceptions"></a>
 ### Exceptions
 The Laravel Amazon MWS package does not catch the Exceptions returned by guzzle. 
@@ -163,7 +180,7 @@ For Example for throttling ServerExceptions or missing Parameter Client Exceptio
 <a name="road-map"></a>
 ## Endpoint Road map
 
-Laravel Amazon MWS is still under development. We have only added the endpoits we currently are using ourselfs. We decided to ship it in this early stage so you can help to add some endpoits or use  the already existing.
+Laravel Amazon MWS is still under development. We have only added the endpoints we currently are using ourselfs. We decided to ship it in this early stage so you can help to add some endpoits or use  the already existing.
 
 Endpoint List:
 
