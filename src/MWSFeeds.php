@@ -23,6 +23,7 @@ class MWSFeeds
     public function setContent($content)
     {
         $this->content = $content;
+
         return $this;
     }
 
@@ -34,17 +35,17 @@ class MWSFeeds
     public function setType($type)
     {
         $this->type = $type;
+
         return $this;
     }
 
     public function submit($purgeAndReplace = false, $amazonOrderId = null, $documentType = null)
     {
-
         $contentmd5Hash = base64_encode(md5($this->getContent(), true));
         $params = [
             'FeedType' => $this->type,
             'PurgeAndReplace' => $purgeAndReplace,
-            'ContentMD5Value' => $contentmd5Hash
+            'ContentMD5Value' => $contentmd5Hash,
         ];
 
         $response = $this->client->post('SubmitFeed', '/', self::VERSION, $params, $this->getContent());
