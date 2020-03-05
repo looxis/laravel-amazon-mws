@@ -170,7 +170,7 @@ GetOrder Response Example:
         ...
     ]
 ]
-
+```
 <a name="exceptions"></a>
 ### Exceptions
 The Laravel Amazon MWS package does not catch the Exceptions returned by guzzle. 
