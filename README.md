@@ -123,9 +123,10 @@ The Feeds API lets you upload inventory and order data to Amazon
 Uploads a feed for processing by Amazon MWS.
 
 You must set the feed type and content to successfully submit the feed.
+The content for the xml depends on the FeedType [type](https://docs.developer.amazonservices.com/en_US/feeds/Feeds_FeedType.html)
 
 ```php
-$feedXmlContent = '<?xml version="1.0"?> ...'; // based on the [type](https://docs.developer.amazonservices.com/en_US/feeds/Feeds_FeedType.html)
+$feedXmlContent = '<?xml version="1.0"?> ...'; 
 $response = AmazonMWS::feeds()
                 ->setType("_POST_ORDER_ACKNOWLEDGEMENT_DATA_")
                 ->setContent($xml)
