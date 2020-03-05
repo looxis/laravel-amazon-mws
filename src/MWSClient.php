@@ -147,15 +147,20 @@ class MWSClient
         return $this->marketplaceIds;
     }
 
-    public function post($action, $path, $version, $params = [])
+    public function post($action, $path, $version, $params = [], $body = null)
     {
         $headers = [
             'Accept' => 'application/xml',
             'x-amazon-user-agent' => self::APPLICATION_NAME.'/'.self::APPLICATION_VERSION,
         ];
+
+        if ($action === 'SubmitFeed') {
+            $headers['Content-Type'] = 'text/xml; charset=iso-8859-1';
+        }
+
         $requestOptions = [
             'headers' => $headers,
-            'body' => null,
+            'body' => $body,
             'query' => $this->getQuery($path, $action, $version, $params),
         ];
 

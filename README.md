@@ -21,6 +21,8 @@ A List of all available endpoints you can see under the endpoint [road map](#roa
     - [Marketplaces](#marketplaces)
     - [Orders](#orders)
 	    - [Get Order](#get-order)
+    - [Feeds](#feeds)
+	    - [Submit Feed](#submit-feed)
     - [Responses](#responses)
     - [Exceptions](#exceptions)
 - [Road Map](#road-map)
@@ -111,17 +113,43 @@ $response = AmazonMWS::orders()->get("1234-1234-1234", "123-123-123"); //get mul
 [MWS Throttling Algorithm](https://docs.developer.amazonservices.com/en_US/dev_guide/DG_Throttling.html)
 - Throws a ServerException with `Request is throttled`
 
+<a name="feeds"></a>
+### Feeds
+The Feeds API lets you upload inventory and order data to Amazon
+[Amazon MWS Orders Documentation Overview](https://docs.developer.amazonservices.com/en_US/feeds/Feeds_Overview.html)
+
+<a name="submit-feed"></a>
+#### Submit Feed
+Uploads a feed for processing by Amazon MWS.
+
+You must set the feed type and content to successfully submit the feed.
+
+```php
+$feedXmlContent = '<?xml version="1.0"?> ...'; // based on the [type](https://docs.developer.amazonservices.com/en_US/feeds/Feeds_FeedType.html)
+$response = AmazonMWS::feeds()
+                ->setType("_POST_ORDER_ACKNOWLEDGEMENT_DATA_")
+                ->setContent($xml)
+                ->submit();
+```
+##### Throttling
+- maximum request quota of 15 and a restore rate of one request every two minutes.
+- Hourly request quote: 30 
+[MWS Throttling Algorithm](https://docs.developer.amazonservices.com/en_US/dev_guide/DG_Throttling.html)
+- Throws a ServerException with `Request is throttled`
+
 <a name="responses"></a>
 ### Responses
 The Amazon MWS XML responses are parsed and will be casted into a convenient array structure.
-GetOrder Response Example:
+SubmitFeedResponse Example:
 
 ```php
 [
-    "request_id" => "be781aff-3c63-485a-aec8-951ed3be2ba4",
+    "request_id" => "e86f7299-9712-43e3-b290-b659da85b527"
     "data" => [
-        "AmazonOrderId" => "902-3159896-1390916",
-        ...
+        "FeedSubmissionId" => "2291326430"
+        "FeedType" => "_POST_ORDER_ACKNOWLEDGEMENT_DATA_"
+        "SubmittedDate" => "2020-03-04T14:54:14+00:00"
+        "FeedProcessingStatus" => "_SUBMITTED_"
     ]
 ]
 ```
@@ -135,7 +163,7 @@ For Example for throttling ServerExceptions or missing Parameter Client Exceptio
 <a name="road-map"></a>
 ## Endpoint Road map
 
-Laravel Amazon MWS is still under development. We have only added the endpoits we currently are using ourself. We decided to ship it in this early stage so you can help to add some endpoits or use  the already existing.
+Laravel Amazon MWS is still under development. We have only added the endpoits we currently are using ourselfs. We decided to ship it in this early stage so you can help to add some endpoits or use  the already existing.
 
 Endpoint List:
 
@@ -147,8 +175,8 @@ Endpoint List:
     - [ ] ListOrderItemsByNextToken
     - [ ] GetServiceStatus
     - [ ] Orders Datatypes
-- [x] Feeds ([MWS Documentation Overview](https://docs.developer.amazonservices.com/en_US/feeds/Feeds_Overview.html))
-    - [ ] SubmitFeed
+- [X] Feeds ([MWS Documentation Overview](https://docs.developer.amazonservices.com/en_US/feeds/Feeds_Overview.html))
+    - [X] SubmitFeed
     - [ ] GetFeedSubmissionList
     - [ ] GetFeedSubmissionListByNextToken
     - [ ] GetFeedSubmissionCount

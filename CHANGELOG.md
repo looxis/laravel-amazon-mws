@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Advanced Readme
 - Add guzzle client timeout
 - parsed and casted order responses
+- Add SubmitFeed functionality
 
 ## [0.0.1] - 2020-02-27
 ### Added
