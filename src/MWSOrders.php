@@ -30,17 +30,35 @@ class MWSOrders
 
         $response = $this->client->post('GetOrder', '/Orders/'.self::VERSION, self::VERSION, $params);
 
-        return $this->parseResponse($response);
+        return $this->parseResponse($response, 'GetOrderResult', 'Orders.Order');
     }
 
-    protected function parseResponse($response)
+    public function getItems($id)
+    {
+        $response = $this->client->post('ListOrderItems', '/Orders/' . self::VERSION, self::VERSION);
+
+        return $this->parseResponse($response, 'ListOrderItemsResult', 'OrderItems.OrderItem');
+    }
+
+    protected function parseResponse($response, $resultTypeName, $dataName)
     {
         $requestId = data_get($response, 'ResponseMetadata.RequestId');
-        $orders = data_get($response, 'GetOrderResult.Orders.Order');
-
-        return [
+        $orders = data_get($response, $resultTypeName. '.' . $dataName);
+        $nextToken = data_get($response, $resultTypeName. '.NextToken');
+        
+        $data = [
             'request_id' => $requestId,
             'data' => $orders,
         ];
+
+        if ($nextToken) {
+            $data['next_token'] = $nextToken;
+        }
+
+        if ($resultTypeName == 'ListOrderItemsResult') {
+            $data['order_id'] = data_get($response, $resultTypeName . '.AmazonOrderId');
+        }
+
+        return $data;
     }
 }

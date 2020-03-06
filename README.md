@@ -21,6 +21,7 @@ A List of all available endpoints you can see under the endpoint [road map](#roa
     - [Marketplaces](#marketplaces)
     - [Orders](#orders)
 	    - [Get Order](#get-order)
+        - [List Order Items](#list-order-items)
     - [Feeds](#feeds)
 	    - [Submit Feed](#submit-feed)
     - [Responses](#responses)
@@ -102,6 +103,7 @@ Retrieve order information that you need.
 <a name="get-order"></a>
 #### Get Order
 Returns orders based on the AmazonOrderId values that you specify.
+[MWS Get Order Documentation](https://docs.developer.amazonservices.com/en_US/orders-2013-09-01/Orders_GetOrder.html)
 
 ```php
 $response = AmazonMWS::orders()->get("1234-1234-1234"); //get amazon order by id
@@ -110,6 +112,20 @@ $response = AmazonMWS::orders()->get("1234-1234-1234", "123-123-123"); //get mul
 ```
 ##### Throttling
 - maximum request quota of six and a restore rate of one request every minute.
+[MWS Throttling Algorithm](https://docs.developer.amazonservices.com/en_US/dev_guide/DG_Throttling.html)
+- Throws a ServerException with `Request is throttled`
+
+<a name="list-order-items"></a>
+#### List Order Items
+Returns order items based on the AmazonOrderId that you specify.
+[MWS List Order Items Documentation](https://docs.developer.amazonservices.com/en_US/orders-2013-09-01/Orders_ListOrderItems.html)
+
+```php
+$response = AmazonMWS::orders()->getItems("1234-1234-1234"); 
+```
+##### Throttling
+- ListOrderItems and ListOrderItemsByNextToken share same throttling
+- maximum request quota of 30 and a restore rate of one request every two seconds.
 [MWS Throttling Algorithm](https://docs.developer.amazonservices.com/en_US/dev_guide/DG_Throttling.html)
 - Throws a ServerException with `Request is throttled`
 
@@ -185,11 +201,11 @@ Laravel Amazon MWS is still under development. We have only added the endpoints 
 
 Endpoint List:
 
-- [x] Orders ([MWS Documentation Overview](https://docs.developer.amazonservices.com/en_US/orders-2013-09-01/Orders_Overview.html))
+- [X] Orders ([MWS Documentation Overview](https://docs.developer.amazonservices.com/en_US/orders-2013-09-01/Orders_Overview.html))
     - [ ] ListOrders
     - [ ] ListOrdersByNextToken
-    - [x] GetOrder
-    - [ ] ListOrderItems
+    - [X] GetOrder
+    - [X] ListOrderItems
     - [ ] ListOrderItemsByNextToken
     - [ ] GetServiceStatus
     - [ ] Orders Datatypes
