@@ -35,7 +35,10 @@ class MWSOrders
 
     public function getItems($id)
     {
-        $response = $this->client->post('ListOrderItems', '/Orders/'.self::VERSION, self::VERSION);
+        $params = [
+            'AmazonOrderId' => $id
+        ];
+        $response = $this->client->post('ListOrderItems', '/Orders/'.self::VERSION, self::VERSION, $params);
 
         return $this->parseResponse($response, 'ListOrderItemsResult', 'OrderItems.OrderItem');
     }
