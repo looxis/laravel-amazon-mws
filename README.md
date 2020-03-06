@@ -2,7 +2,7 @@
 
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/looxis/laravel-amazon-mws.svg?style=flat-square)](https://packagist.org/packages/looxis/laravel-amazon-mws)
-![Travis (.org)](https://img.shields.io/travis/looxis/laravel-amazon-mws)
+[![Build Status](https://travis-ci.org/looxis/laravel-amazon-mws.svg?branch=master)](https://travis-ci.org/looxis/laravel-amazon-mws)
 [![StyleCI](https://styleci.io/repos/242777921/shield?branch=master)](https://styleci.io/repos/242777921)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/looxis/laravel-amazon-mws/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/looxis/laravel-amazon-mws/?branch=master)
 
