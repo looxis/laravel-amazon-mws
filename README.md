@@ -20,6 +20,7 @@ A List of all available endpoints you can see under the endpoint [road map](#roa
     - [Authentication](#authentication)
     - [Marketplaces](#marketplaces)
     - [Orders](#orders)
+        - [List Orders](#list-orders)
 	    - [Get Order](#get-order)
         - [List Order Items](#list-order-items)
     - [Feeds](#feeds)
@@ -99,6 +100,26 @@ AmazonMWS::setMarketplaces('DE', 'FR');  //to append multiple marketplaces to yo
 ### Orders
 Retrieve order information that you need.
 [Amazon MWS Orders Documentation Overview](https://docs.developer.amazonservices.com/en_US/orders-2013-09-01/Orders_Overview.htm)
+
+<a name="list-orders"></a>
+#### List Orders
+Returns orders created or updated during a time frame that you specify.
+[MWS List Orders Documentation](https://docs.developer.amazonservices.com/en_US/orders-2013-09-01/Orders_ListOrders.html)
+
+```php
+$response = AmazonMWS::orders()->list([
+    'CreatedAfter' => '2020-04-09T18:56:29+02:00'
+]); 
+
+// List Order By Next Token
+$response = AmazonMWS::orders()->list([
+    'NextToken' => '27u07N+WSfaaJkJYLDm0ZAmQazDrhw3C...'
+]); 
+```
+##### Throttling
+- maximum request quota of six and a restore rate of one request every minute.
+[MWS Throttling Algorithm](https://docs.developer.amazonservices.com/en_US/dev_guide/DG_Throttling.html)
+- Throws a ServerException with `Request is throttled`
 
 <a name="get-order"></a>
 #### Get Order
@@ -202,8 +223,8 @@ Laravel Amazon MWS is still under development. We have only added the endpoints 
 Endpoint List:
 
 - [X] Orders ([MWS Documentation Overview](https://docs.developer.amazonservices.com/en_US/orders-2013-09-01/Orders_Overview.html))
-    - [ ] ListOrders
-    - [ ] ListOrdersByNextToken
+    - [X] ListOrders
+    - [X] ListOrdersByNextToken
     - [X] GetOrder
     - [X] ListOrderItems
     - [ ] ListOrderItemsByNextToken
