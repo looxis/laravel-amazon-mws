@@ -59,7 +59,7 @@ class MWSOrders
         $createdBefore = data_get($response, $resultTypeName . '.CreatedBefore');
 
         //Check if single list item and wrap
-        if ((!data_get($data, '0')) && $resultTypeName == 'ListOrderItemsResult') {
+        if ((! data_get($data, '0')) && $resultTypeName == 'ListOrderItemsResult') {
             $data = [$data];
         }
 
@@ -77,7 +77,7 @@ class MWSOrders
         }
 
         if ($resultTypeName == 'ListOrderItemsResult') {
-            $data['order_id'] = data_get($response, $resultTypeName . '.AmazonOrderId');
+            $data['order_id'] = data_get($response, $resultTypeName.'.AmazonOrderId');
         }
 
         return $data;
