@@ -47,7 +47,7 @@ class MWSOrdersTest extends TestCase
         $mwsClient = new MWSClient($client);
         $mwsOrders = new MWSOrders($mwsClient);
         $response = $mwsOrders->list([
-            'CreatedAfter' => '2020-04-09T18:56:29+02:00'
+            'CreatedAfter' => '2020-04-09T18:56:29+02:00',
         ]);
         $this->assertIsArray($response);
         $this->assertArrayHasKey('request_id', $response);
@@ -70,7 +70,7 @@ class MWSOrdersTest extends TestCase
         $mwsClient = new MWSClient($client);
         $mwsOrders = new MWSOrders($mwsClient);
         $response = $mwsOrders->list([
-            'NextToken' => '2YgYW55IGNhcm5hbCBwbGVhc3VyZS4='
+            'NextToken' => '2YgYW55IGNhcm5hbCBwbGVhc3VyZS4=',
         ]);
         $this->assertIsArray($response);
         $this->assertArrayHasKey('request_id', $response);
