@@ -24,7 +24,7 @@ class MWSClientTest extends TestCase
     }
 
     /** @test */
-    function set_market_places()
+    public function set_market_places()
     {
         $client = new MWSClient();
         $client->setMarketPlaces('DE', 'FR');
@@ -83,6 +83,4 @@ class MWSClientTest extends TestCase
     {
         $this->markTestIncomplete('TODO');
     }
-
-    
 }
