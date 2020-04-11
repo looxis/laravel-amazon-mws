@@ -24,6 +24,15 @@ class MWSClientTest extends TestCase
     }
 
     /** @test */
+    function set_market_places()
+    {
+        $client = new MWSClient();
+        $client->setMarketPlaces('DE', 'FR');
+        $this->assertEquals('DE', $client->getCurrentMarketPlaces()[0]);
+        $this->assertEquals('FR', $client->getCurrentMarketPlaces()[1]);
+    }
+
+    /** @test */
     public function set_access_key()
     {
         $client = new MWSClient();
@@ -74,4 +83,6 @@ class MWSClientTest extends TestCase
     {
         $this->markTestIncomplete('TODO');
     }
+
+    
 }

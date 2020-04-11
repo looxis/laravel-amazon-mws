@@ -72,7 +72,12 @@ class MWSClient
     public function setMarketPlaces($countryCodes)
     {
         $countryCodes = is_array($countryCodes) ? $countryCodes : func_get_args();
-        $this->marketplaceIds = $countryCodes;
+        $this->marketPlaces = $countryCodes;
+    }
+
+    public function getCurrentMarketPlaces()
+    {
+        return $this->marketPlaces;
     }
 
     public function getTimeStamp()
@@ -119,7 +124,6 @@ class MWSClient
         $mainMarketPlace = $this->marketPlaces[0];
         if ($mainMarketPlace) {
             $marketPlaceId = $this->countries[$mainMarketPlace];
-
             return $this->marketplaceIds[$marketPlaceId];
         }
 
