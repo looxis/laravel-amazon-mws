@@ -124,6 +124,7 @@ class MWSClient
         $mainMarketPlace = $this->marketPlaces[0];
         if ($mainMarketPlace) {
             $marketPlaceId = $this->countries[$mainMarketPlace];
+
             return $this->marketplaceIds[$marketPlaceId];
         }
 
