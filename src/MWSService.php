@@ -21,6 +21,7 @@ class MWSService
 
     public function setMarketPlaces($countries)
     {
+        $countries = is_array($countries) ? $countries : func_get_args();
         $this->mwsClient->setMarketPlaces($countries);
     }
 }
