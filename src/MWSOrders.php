@@ -22,8 +22,9 @@ class MWSOrders
             $action = 'ListOrdersByNextToken';
         }
 
-        $response = $this->client->post($action, '/Orders/' . self::VERSION, self::VERSION, $params);
-        return $this->parseResponse($response, $action. 'Result', 'Orders.Order');
+        $response = $this->client->post($action, '/Orders/'.self::VERSION, self::VERSION, $params);
+
+        return $this->parseResponse($response, $action.'Result', 'Orders.Order');
     }
 
     public function get($ids)
@@ -54,9 +55,9 @@ class MWSOrders
     protected function parseResponse($response, $resultTypeName, $dataName)
     {
         $requestId = data_get($response, 'ResponseMetadata.RequestId');
-        $data = data_get($response, $resultTypeName . '.' . $dataName);
-        $nextToken = data_get($response, $resultTypeName . '.NextToken');
-        $createdBefore = data_get($response, $resultTypeName . '.CreatedBefore');
+        $data = data_get($response, $resultTypeName.'.'.$dataName);
+        $nextToken = data_get($response, $resultTypeName.'.NextToken');
+        $createdBefore = data_get($response, $resultTypeName.'.CreatedBefore');
 
         //Check if single list item and wrap
         if ((! data_get($data, '0')) && $resultTypeName == 'ListOrderItemsResult') {
