@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.1.8] - 2020-04-14
 ### Updated
 - Wrap Single List Order Results in an array
+- Set data null if nothing gets returned
 
 ## [0.1.7] - 2020-04-11
 ### Updated
