@@ -54,13 +54,17 @@ class MWSOrders
 
     protected function parseResponse($response, $resultTypeName, $dataName)
     {
-        $requestId = data_get($response, 'ResponseMetadata.RequestId');
+        $requestId = data_get($response, 'ResponseMetadata.RequestId'); 
         $data = data_get($response, $resultTypeName.'.'.$dataName);
         $nextToken = data_get($response, $resultTypeName.'.NextToken');
         $createdBefore = data_get($response, $resultTypeName.'.CreatedBefore');
-
         //Check if single list item and wrap
-        if ((! data_get($data, '0')) && $resultTypeName == 'ListOrderItemsResult') {
+        if ((! data_get($data, '0')) && in_array($resultTypeName, [
+            'ListOrderItemsResult',
+            'ListOrderItemsByNextTokenResult',
+            'ListOrdersResult',
+            'ListOrdersByNextTokenResult'
+        ])) {
             $data = [$data];
         }
 
