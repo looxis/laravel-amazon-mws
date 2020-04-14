@@ -54,7 +54,7 @@ class MWSOrders
 
     protected function parseResponse($response, $resultTypeName, $dataName)
     {
-        $requestId = data_get($response, 'ResponseMetadata.RequestId'); 
+        $requestId = data_get($response, 'ResponseMetadata.RequestId');
         $data = data_get($response, $resultTypeName.'.'.$dataName);
         $nextToken = data_get($response, $resultTypeName.'.NextToken');
         $createdBefore = data_get($response, $resultTypeName.'.CreatedBefore');
@@ -63,7 +63,7 @@ class MWSOrders
             'ListOrderItemsResult',
             'ListOrderItemsByNextTokenResult',
             'ListOrdersResult',
-            'ListOrdersByNextTokenResult'
+            'ListOrdersByNextTokenResult',
         ])) {
             $data = [$data];
         }
