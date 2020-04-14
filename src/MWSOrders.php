@@ -66,7 +66,6 @@ class MWSOrders
             'ListOrdersResult',
             'ListOrdersByNextTokenResult',
         ])) {
-
             $data = [$data];
         }
 
