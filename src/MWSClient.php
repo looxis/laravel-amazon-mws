@@ -38,7 +38,7 @@ class MWSClient
         'A19VAU5U5O7RUS' => 'mws-fe.amazonservices.com',
         'A39IBJ37TRP1C6' => 'mws.amazonservices.com.au',
         'A1VC38T7YXB528' => 'mws.amazonservices.jp',
-        'A1805IZSGTT6HS' => 'mws-eu.amazonservices.com'
+        'A1805IZSGTT6HS' => 'mws-eu.amazonservices.com',
     ];
 
     protected $countries = [
