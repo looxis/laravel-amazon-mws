@@ -182,6 +182,7 @@ class MWSClient
         $response = $this->client->post($uri, $requestOptions);
         $xmlResponse = simplexml_load_string($response->getBody()->getContents());
         $json = json_encode($xmlResponse);
+
         return json_decode($json, true);
     }
 

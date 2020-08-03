@@ -23,6 +23,7 @@ class MWSOrders
         }
 
         $response = $this->client->post($action, '/Orders/'.self::VERSION, self::VERSION, $params);
+
         return $this->parseResponse($response, $action.'Result', 'Orders.Order');
     }
 
@@ -47,6 +48,7 @@ class MWSOrders
             'AmazonOrderId' => $id,
         ];
         $response = $this->client->post('ListOrderItems', '/Orders/'.self::VERSION, self::VERSION, $params);
+
         return $this->parseResponse($response, 'ListOrderItemsResult', 'OrderItems.OrderItem');
     }
 
