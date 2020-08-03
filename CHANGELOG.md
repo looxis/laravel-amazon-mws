@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.10] - 2020-08-03
+### Added
+- Add MWS Auth Token to MWSClient requests and amazon-mws config file
+
 ## [0.1.8] - 2020-04-14
 ### Updated
 - Wrap Single List Order Results in an array
