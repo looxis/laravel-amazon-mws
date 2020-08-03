@@ -19,6 +19,7 @@ class MWSClient
     protected $sellerId;
     protected $client;
     protected $marketPlaces;
+    protected $mwsAuthToken;
 
     protected $marketplaceIds = [
         'A2Q3Y263D00KWC' => 'mws.amazonservices.com',
@@ -38,7 +39,7 @@ class MWSClient
         'A19VAU5U5O7RUS' => 'mws-fe.amazonservices.com',
         'A39IBJ37TRP1C6' => 'mws.amazonservices.com.au',
         'A1VC38T7YXB528' => 'mws.amazonservices.jp',
-        'A1805IZSGTT6HS' => 'mws-eu.amazonservices.com'
+        'A1805IZSGTT6HS' => 'mws-eu.amazonservices.com',
     ];
 
     protected $countries = [
@@ -67,6 +68,7 @@ class MWSClient
         $this->accessKeyId = config('amazon-mws.access_key_id');
         $this->secretKey = config('amazon-mws.secret_key');
         $this->sellerId = config('amazon-mws.seller_id');
+        $this->mwsAuthToken = config('amazon-mws.mws_auth_token');
         $this->marketPlaces = ['DE'];
         $this->client = $client ?: new Client(['timeout'  => 60]);
     }
@@ -109,6 +111,11 @@ class MWSClient
         $this->sellerId = $id;
 
         return $this;
+    }
+
+    public function getMWSAuthToken()
+    {
+        return $this->mwsAuthToken;
     }
 
     public function getSignatureMethod()
@@ -175,7 +182,6 @@ class MWSClient
         $response = $this->client->post($uri, $requestOptions);
         $xmlResponse = simplexml_load_string($response->getBody()->getContents());
         $json = json_encode($xmlResponse);
-
         return json_decode($json, true);
     }
 
@@ -186,6 +192,7 @@ class MWSClient
             'Timestamp' => $this->getTimeStamp(),
             'AWSAccessKeyId' => $this->getAccessKeyId(),
             'SellerId' => $this->getSellerId(),
+            'MWSAuthToken' => $this->getMWSAuthToken(),
             'SignatureMethod' => $this->getSignatureMethod(),
             'SignatureVersion' => $this->getSignatureVersion(),
             'Version' => $version,
