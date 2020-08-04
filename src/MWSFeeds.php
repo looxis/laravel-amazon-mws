@@ -53,6 +53,16 @@ class MWSFeeds
         return $this->parseResponse($response);
     }
 
+    public function getFeedSubmissionResult($amazonFeedSubmissionId){
+        $params = [
+            'FeedSubmissionId' => $amazonFeedSubmissionId
+        ];
+
+        $response = $this->client->post('GetFeedSubmissionResult', '/', self::VERSION, $params);
+
+        return $this->parseResponse($response);
+    }
+
     protected function parseResponse($response)
     {
         $requestId = data_get($response, 'ResponseMetadata.RequestId');
