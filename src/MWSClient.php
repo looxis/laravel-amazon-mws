@@ -172,6 +172,10 @@ class MWSClient
             $headers['Content-Type'] = 'text/xml; charset=iso-8859-1';
         }
 
+        if ($action === 'GetFeedSubmissionResult') {
+            $headers['Content-Type'] = 'x-www-form-urlencoded';
+        }
+
         $requestOptions = [
             'headers' => $headers,
             'body' => $body,
