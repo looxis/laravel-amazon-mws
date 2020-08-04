@@ -53,7 +53,8 @@ class MWSFeeds
         return $this->parseResponse($response);
     }
 
-    public function getFeedSubmissionResult($amazonFeedSubmissionId){
+    public function getFeedSubmissionResult($amazonFeedSubmissionId)
+    {
         $params = [
             'FeedSubmissionId' => $amazonFeedSubmissionId
         ];
