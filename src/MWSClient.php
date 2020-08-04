@@ -184,6 +184,7 @@ class MWSClient
 
         $uri = 'https://'.$this->getDomain().$path;
         $response = $this->client->post($uri, $requestOptions);
+        echo $response->getBody()->getContents();
         $xmlResponse = simplexml_load_string($response->getBody()->getContents());
         $json = json_encode($xmlResponse);
 
