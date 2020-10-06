@@ -69,7 +69,7 @@ class MWSClient
         $this->secretKey = config('amazon-mws.secret_key');
         $this->sellerId = config('amazon-mws.seller_id');
         $this->mwsAuthToken = config('amazon-mws.mws_auth_token') ?: null;
-        $this->marketPlaces = explode(',', config('amazon-mws.default_market_place'));
+        $this->marketPlaces = explode(',', config('amazon-mws.default_market_place') ?: 'DE');
         $this->client = $client ?: new Client(['timeout'  => 60]);
     }
 
