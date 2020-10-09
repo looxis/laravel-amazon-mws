@@ -25,6 +25,7 @@ A List of all available endpoints you can see under the endpoint [road map](#roa
         - [List Order Items](#list-order-items)
     - [Feeds](#feeds)
 	    - [Submit Feed](#submit-feed)
+        - [Get Feed Submission Result](#get-feed-submission-result)
     - [Responses](#responses)
     - [Exceptions](#exceptions)
 - [Road Map](#road-map)
@@ -92,7 +93,7 @@ You do not have to set them by yourself.
 ([Amazon MWS endpoints and Market Place IDS Overview](https://docs.developer.amazonservices.com/en_US/dev_guide/DG_Endpoints.html)) If something is missing do not hesitate to create an issue.
 
 ```php
-AmazonMWS::setMarketplaces('FR'); 
+AmazonMWS::setMarketplaces('FR');
 
 AmazonMWS::setMarketplaces('DE', 'FR');  //to append multiple marketplaces to your request query strings.
 ```
@@ -110,12 +111,12 @@ Returns orders created or updated during a time frame that you specify.
 ```php
 $response = AmazonMWS::orders()->list([
     'CreatedAfter' => '2020-04-09T18:56:29+02:00'
-]); 
+]);
 
 // List Order By Next Token
 $response = AmazonMWS::orders()->list([
     'NextToken' => '27u07N+WSfaaJkJYLDm0ZAmQazDrhw3C...'
-]); 
+]);
 ```
 ##### Throttling
 - maximum request quota of six and a restore rate of one request every minute.
@@ -143,7 +144,7 @@ Returns order items based on the AmazonOrderId that you specify.
 [MWS List Order Items Documentation](https://docs.developer.amazonservices.com/en_US/orders-2013-09-01/Orders_ListOrderItems.html)
 
 ```php
-$response = AmazonMWS::orders()->getItems("1234-1234-1234"); 
+$response = AmazonMWS::orders()->getItems("1234-1234-1234");
 ```
 ##### Throttling
 - ListOrderItems and ListOrderItemsByNextToken share same throttling
@@ -164,7 +165,7 @@ You must set the feed type and content to successfully submit the feed.
 The content for the xml depends on the [FeedType](https://docs.developer.amazonservices.com/en_US/feeds/Feeds_FeedType.html)
 
 ```php
-$feedXmlContent = '<?xml version="1.0"?> ...'; 
+$feedXmlContent = '<?xml version="1.0"?> ...';
 $response = AmazonMWS::feeds()
                 ->setType("_POST_ORDER_ACKNOWLEDGEMENT_DATA_")
                 ->setContent($xml)
@@ -172,7 +173,7 @@ $response = AmazonMWS::feeds()
 ```
 ##### Throttling
 - maximum request quota of 15 and a restore rate of one request every two minutes.
-- Hourly request quote: 30 
+- Hourly request quote: 30
 [MWS Throttling Algorithm](https://docs.developer.amazonservices.com/en_US/dev_guide/DG_Throttling.html)
 - Throws a ServerException with `Request is throttled`
 
@@ -194,6 +195,41 @@ SubmitFeedResponse Example:
 ]
 ```
 
+<a name="get-feed-submission-result"></a>
+#### Get Feed Submission Result
+Returns the feed processing report and the Content-MD5 header.
+
+Pass the Feed Submission Id as a parameter to retrieve the feed result
+Amazon MWS Description [GetFeedSubmissionResult](https://docs.developer.amazonservices.com/en_US/feeds/Feeds_GetFeedSubmissionResult.html)
+
+```php
+$response = AmazonMWS::feeds()
+                ->getFeedSubmissionResult($feedSubmissionId);
+```
+##### Throttling
+- maximum request quota of 15 and a restore rate of one request every minute.
+- Hourly request quote: 60
+[MWS Throttling Algorithm](https://docs.developer.amazonservices.com/en_US/dev_guide/DG_Throttling.html)
+- Throws a ServerException with `Request is throttled`
+
+##### Responses
+The Feed Submission Result responses are parsed and will be casted into a convenient structure.
+
+SubmitFeedResponse Example:
+
+```php
+[
+    "status_code" => "Complete",
+    "processing_summary" => [
+        "MessagesProcessed" => "2"
+        "MessagesSuccessful" => "2"
+        "MessagesWithError" => "0"
+        "MessagesWithWarning" => "0"
+    ],
+    "result" => null
+]
+```
+
 <a name="responses"></a>
 ### General Responses
 
@@ -212,7 +248,7 @@ GetOrder Response Example:
 ```
 <a name="exceptions"></a>
 ### Exceptions
-The Laravel Amazon MWS package does not catch the Exceptions returned by guzzle. 
+The Laravel Amazon MWS package does not catch the Exceptions returned by guzzle.
 For Example for throttling ServerExceptions or missing Parameter Client Exceptions.
 
 
@@ -237,7 +273,7 @@ Endpoint List:
     - [ ] GetFeedSubmissionListByNextToken
     - [ ] GetFeedSubmissionCount
     - [ ] CancelFeedSubmissions
-    - [ ] GetFeedSubmissionResult
+    - [X] GetFeedSubmissionResult
 - [ ] Easy Ship ([MWS Documentation Overview](https://docs.developer.amazonservices.com/en_US/easy_ship/EasyShip_Overview.html))
 - [ ] Finances ([MWS Documentation Overview](https://docs.developer.amazonservices.com/en_US/finances/Finances_Overview.html))
 - [ ] FulFillment Inbound Shipment ([MWS Documentation Overview](https://docs.developer.amazonservices.com/en_US/fba_inbound/FBAInbound_Overview.html))

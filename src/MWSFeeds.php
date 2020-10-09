@@ -50,10 +50,10 @@ class MWSFeeds
 
         $response = $this->client->post('SubmitFeed', '/', self::VERSION, $params, $this->getContent());
 
-        return $this->parseResponse($response);
+        return $this->parseSubmitFeedResponse($response);
     }
 
-    protected function parseResponse($response)
+    protected function parseSubmitFeedResponse($response)
     {
         $requestId = data_get($response, 'ResponseMetadata.RequestId');
         $feed = data_get($response, 'SubmitFeedResult.FeedSubmissionInfo');
@@ -61,6 +61,26 @@ class MWSFeeds
         return [
             'request_id' => $requestId,
             'data' => $feed,
+        ];
+    }
+
+    public function getFeedSubmissionResult($amazonFeedSubmissionId)
+    {
+        $params = [
+            'FeedSubmissionId' => $amazonFeedSubmissionId
+        ];
+
+        $response = $this->client->post('GetFeedSubmissionResult', '/', self::VERSION, $params);
+
+        return $this->parseSubmissionResultResponse($response);
+    }
+
+    protected function parseSubmissionResultResponse($response)
+    {
+        return [
+            'status_code' => data_get($response, 'Message.ProcessingReport.StatusCode'),
+            'processing_summary' => data_get($response, 'Message.ProcessingReport.ProcessingSummary'),
+            'result' => data_get($response, 'Message.ProcessingReport.Result')
         ];
     }
 }
