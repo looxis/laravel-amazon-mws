@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.11] - 2020-10-09
+### Added
+- Add getFeedSubmissionResult() method on the MWSFeeds Class and parse to convenient response structure
+- Add x-www-form-urlencoded header if action is GetFeedSubmissionResult in MWSClient
+
+## [0.1.11] - 2020-10-06
+### Fixed
+- Take the default_market_place environment variable if given in MWSClient
+- Set MWS_auth_token to null instead of empty string if not given
+
 ## [0.1.10] - 2020-08-03
 ### Added
 - Add MWS Auth Token to MWSClient requests and amazon-mws config file
