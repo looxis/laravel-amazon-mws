@@ -67,7 +67,7 @@ class MWSFeeds
     public function getFeedSubmissionResult($amazonFeedSubmissionId)
     {
         $params = [
-            'FeedSubmissionId' => $amazonFeedSubmissionId
+            'FeedSubmissionId' => $amazonFeedSubmissionId,
         ];
 
         $response = $this->client->post('GetFeedSubmissionResult', '/', self::VERSION, $params);
@@ -80,7 +80,7 @@ class MWSFeeds
         return [
             'status_code' => data_get($response, 'Message.ProcessingReport.StatusCode'),
             'processing_summary' => data_get($response, 'Message.ProcessingReport.ProcessingSummary'),
-            'result' => data_get($response, 'Message.ProcessingReport.Result')
+            'result' => data_get($response, 'Message.ProcessingReport.Result'),
         ];
     }
 }
