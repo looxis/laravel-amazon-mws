@@ -38,7 +38,8 @@ A List of all available endpoints you can see under the endpoint [road map](#roa
 Link to the [Official Amazon MWS Documentation](https://docs.developer.amazonservices.com/en_US/dev_guide/index.html)
 
 ## Installation
-This package requires PHP 7.3 and Laravel 6.0 or higher.
+This package requires PHP 7.3 and Laravel 8.0 or higher.
+For older laravel versions install the latest 0.1.x version.
 
 Require the package using composer:
 
