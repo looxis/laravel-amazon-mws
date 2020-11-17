@@ -26,6 +26,8 @@ A List of all available endpoints you can see under the endpoint [road map](#roa
     - [Feeds](#feeds)
 	    - [Submit Feed](#submit-feed)
         - [Get Feed Submission Result](#get-feed-submission-result)
+    - [Merchant Fulfillment](#merchant-fulfillment)
+        - [Get Eligible Shipping Services](#get-eligible-shipping-services)
     - [Responses](#responses)
     - [Exceptions](#exceptions)
 - [Road Map](#road-map)
@@ -231,6 +233,33 @@ SubmitFeedResponse Example:
 ]
 ```
 
+
+<a name="merchant-fulfillment"></a>
+### Merchant Fulfillment
+With the Merchant Fulfillment service, you can build applications that let sellers purchase shipping for non-Prime and Prime orders using Amazon’s Buy Shipping Services.
+
+[Amazon MWS Merchant Fulfillment Documentation Overview](https://docs.developer.amazonservices.com/en_US/merch_fulfill/MerchFulfill_Overview.html)
+
+<a name="get-eligible-shipping-services"></a>
+#### Get Eligible Shipping Services
+Returns a list of shipping service offers.
+[MWS Get Eligible Shipping Services Documentation](https://docs.developer.amazonservices.com/en_US/merch_fulfill/MerchFulfill_GetEligibleShippingServices.html)
+
+Fill the params with the [ShipmentRequestDetails](https://docs.developer.amazonservices.com/en_US/merch_fulfill/MerchFulfill_Datatypes.html#ShipmentRequestDetails) and the [ShippingOfferingFilter](https://docs.developer.amazonservices.com/en_US/merch_fulfill/MerchFulfill_Datatypes.html#ShippingOfferingFilter)
+
+```php
+$params = [
+    'ShipmentRequestDetails' => [...],
+    'ShippingOfferingFilter' => [...]
+];
+$response = AmazonMWS::merchantFulfillment()->getEligibleShippingServices($params);
+```
+##### Throttling
+- maximum request quota of 10 and a restore rate of 5 requests every second.
+[MWS Throttling Algorithm](https://docs.developer.amazonservices.com/en_US/dev_guide/DG_Throttling.html)
+- Throws a ServerException with `Request is throttled`
+
+
 <a name="responses"></a>
 ### General Responses
 
@@ -280,7 +309,13 @@ Endpoint List:
 - [ ] FulFillment Inbound Shipment ([MWS Documentation Overview](https://docs.developer.amazonservices.com/en_US/fba_inbound/FBAInbound_Overview.html))
 - [ ] FulFillment Inventory ([MWS Documentation Overview](https://docs.developer.amazonservices.com/en_US/fba_inventory/FBAInventory_Overview.html))
 - [ ] FulFillment Outbound Shipment ([MWS Documentation Overview](https://docs.developer.amazonservices.com/en_US/fba_outbound/FBAOutbound_Overview.html))
-- [ ] Merchant Fulfillment ([MWS Documentation Overview](https://docs.developer.amazonservices.com/en_US/merch_fulfill/MerchFulfill_Overview.html))
+- [X] Merchant Fulfillment ([MWS Documentation Overview](https://docs.developer.amazonservices.com/en_US/merch_fulfill/MerchFulfill_Overview.html))
+    - [X] GetEligibleShippingServices
+    - [ ] GetAdditionalSellerInputs
+    - [ ] CreateShipment
+    - [ ] GetShipment
+    - [ ] CancelShipment
+    - [ ] GetServiceStatus
 - [ ] Products ([MWS Documentation Overview](https://docs.developer.amazonservices.com/en_US/products/Products_Overview.html))
 - [ ] Recommendations ([MWS Documentation Overview](https://docs.developer.amazonservices.com/en_US/recommendations/Recommendations_Overview.html))
 - [ ] Reports ([MWS Documentation Overview](https://docs.developer.amazonservices.com/en_US/reports/Reports_Overview.html))

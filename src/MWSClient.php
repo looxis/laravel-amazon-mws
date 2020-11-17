@@ -3,6 +3,7 @@
 namespace Looxis\LaravelAmazonMWS;
 
 use GuzzleHttp\Client;
+use Illuminate\Support\Arr;
 use Looxis\LaravelAmazonMWS\Exceptions\CountryIsMissingException;
 use Looxis\LaravelAmazonMWS\Exceptions\CountryNotAvailableException;
 
@@ -181,7 +182,6 @@ class MWSClient
             'body' => $body,
             'query' => $this->getQuery($path, $action, $version, $params),
         ];
-
         $uri = 'https://'.$this->getDomain().$path;
         $response = $this->client->post($uri, $requestOptions);
         $xmlResponse = simplexml_load_string($response->getBody()->getContents());
@@ -203,7 +203,7 @@ class MWSClient
             'Version' => $version,
         ];
         $queryParameters = array_merge($queryParameters, $this->getMarketPlaceParams());
-        $queryParameters = array_merge($queryParameters, $params);
+        $queryParameters = array_merge($queryParameters, Arr::dot($params));
         ksort($queryParameters);
 
         return $queryParameters;
@@ -222,7 +222,7 @@ class MWSClient
 
     public function generateRequestUri($action, $version, $params = [])
     {
-        return http_build_query($this->getDefaultQueryParams($action, $version, $params), null, '&', PHP_QUERY_RFC3986);
+        return http_build_query($this->getDefaultQueryParams($action, $version, $params), '', '&', PHP_QUERY_RFC3986);
     }
 
     public function getQueryStringForSignature($path, $action, $version, $params = [])
