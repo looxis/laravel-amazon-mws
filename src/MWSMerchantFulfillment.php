@@ -35,5 +35,4 @@ class MWSMerchantFulfillment
 
         return $data;
     }
-
 }
