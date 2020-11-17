@@ -8,7 +8,6 @@ use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
 use Looxis\LaravelAmazonMWS\MWSClient;
 use Looxis\LaravelAmazonMWS\MWSMerchantFulfillment;
-use Looxis\LaravelAmazonMWS\MWSOrders;
 use Orchestra\Testbench\TestCase;
 
 class MWSMerchantFulfillmentTest extends TestCase
@@ -29,16 +28,16 @@ class MWSMerchantFulfillmentTest extends TestCase
         $mwsMerchantFulfillment = new MWSMerchantFulfillment($mwsClient);
         $params = [
             'ShipmentRequestDetails' => [
-                "AmazonOrderId" => 'XXX-XXXXXXX-XXXXXXX',
-                "ItemList" => [
-                    "Item" => [
+                'AmazonOrderId' => 'XXX-XXXXXXX-XXXXXXX',
+                'ItemList' => [
+                    'Item' => [
                         1 => [
                             'OrderItemId' => 'XXXXXXXXXXXXXX',
-                            'Quantity' => 1
-                        ]
-                    ]
+                            'Quantity' => 1,
+                        ],
+                    ],
                 ],
-                "ShipFromAddress" => [
+                'ShipFromAddress' => [
                     'Name' => 'FOO GmbH',
                     'AddressLine1' => 'Bar Str.11',
                     'City' => 'Minden',
@@ -46,24 +45,24 @@ class MWSMerchantFulfillmentTest extends TestCase
                     'PostalCode' => '32423',
                     'CountryCode' => 'DE',
                     'Email' => 'foo@example.com',
-                    'Phone' => '123456789'
+                    'Phone' => '123456789',
                 ],
-                "PackageDimensions" => [
+                'PackageDimensions' => [
                     'Length' => 30,
                     'Width' => 22,
                     'Height' => 14,
-                    'Unit' => 'centimeters'
+                    'Unit' => 'centimeters',
                 ],
-                "Weight" => [
+                'Weight' => [
                     'Value' => 700,
-                    'Unit' => 'grams'
+                    'Unit' => 'grams',
                 ],
-                "ShippingServiceOptions" => [
+                'ShippingServiceOptions' => [
                     'DeliveryExperience' => 'DeliveryConfirmationWithoutSignature',
                     'CarrierWillPickUp' => 'true',
-                    'LabelFormat' => 'ShippingServiceDefault'
-                ]
-            ]
+                    'LabelFormat' => 'ShippingServiceDefault',
+                ],
+            ],
         ]; //example data
         $response = $mwsMerchantFulfillment->getEligibleShippingServices($params);
         $this->assertIsArray($response);
