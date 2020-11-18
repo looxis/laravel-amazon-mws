@@ -49,7 +49,7 @@ class MWSMerchantFulfillment
         $action = 'CancelShipment';
 
         $response = $this->client->post($action, '/MerchantFulfillment/'.self::VERSION, self::VERSION, [
-            'ShipmentId' => $shipmentId
+            'ShipmentId' => $shipmentId,
         ]);
 
         return $this->parseResponse($response, $action.'Result');
@@ -60,7 +60,7 @@ class MWSMerchantFulfillment
         $action = 'GetShipment';
 
         $response = $this->client->post($action, '/MerchantFulfillment/'.self::VERSION, self::VERSION, [
-            'ShipmentId' => $shipmentId
+            'ShipmentId' => $shipmentId,
         ]);
 
         return $this->parseResponse($response, $action.'Result');
@@ -71,6 +71,7 @@ class MWSMerchantFulfillment
         $action = 'GetServiceStatus';
 
         $response = $this->client->post($action, '/MerchantFulfillment/'.self::VERSION, self::VERSION);
+
         return $this->parseResponse($response, $action.'Result');
     }
 
@@ -79,7 +80,7 @@ class MWSMerchantFulfillment
         $action = 'GetAdditionalSellerInputs';
 
         $response = $this->client->post($action, '/MerchantFulfillment/'.self::VERSION, self::VERSION, $params);
+
         return $this->parseResponse($response, $action.'Result');
     }
-
 }

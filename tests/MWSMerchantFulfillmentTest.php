@@ -87,16 +87,16 @@ class MWSMerchantFulfillmentTest extends TestCase
         $data = [
             'ShippingServiceId' => 'FEDEX_PTP_PRIORITY_OVERNIGHT',
             'ShipmentRequestDetails' => [
-                "AmazonOrderId" => 'XXX-XXXXXXX-XXXXXXX',
-                "ItemList" => [
-                    "Item" => [
+                'AmazonOrderId' => 'XXX-XXXXXXX-XXXXXXX',
+                'ItemList' => [
+                    'Item' => [
                         1 => [
                             'OrderItemId' => 'XXXXXXXXXXXXXX',
-                            'Quantity' => 1
-                        ]
-                    ]
+                            'Quantity' => 1,
+                        ],
+                    ],
                 ],
-                "ShipFromAddress" => [
+                'ShipFromAddress' => [
                     'Name' => 'FOO GmbH',
                     'AddressLine1' => 'Bar Str.11',
                     'City' => 'Minden',
@@ -104,24 +104,24 @@ class MWSMerchantFulfillmentTest extends TestCase
                     'PostalCode' => '32423',
                     'CountryCode' => 'DE',
                     'Email' => 'foo@example.com',
-                    'Phone' => '123456789'
+                    'Phone' => '123456789',
                 ],
-                "PackageDimensions" => [
+                'PackageDimensions' => [
                     'Length' => 30,
                     'Width' => 22,
                     'Height' => 14,
-                    'Unit' => 'centimeters'
+                    'Unit' => 'centimeters',
                 ],
-                "Weight" => [
+                'Weight' => [
                     'Value' => 700,
-                    'Unit' => 'grams'
+                    'Unit' => 'grams',
                 ],
-                "ShippingServiceOptions" => [
+                'ShippingServiceOptions' => [
                     'DeliveryExperience' => 'DeliveryConfirmationWithoutSignature',
                     'CarrierWillPickUp' => 'true',
-                    'LabelFormat' => 'ShippingServiceDefault'
-                ]
-            ]
+                    'LabelFormat' => 'ShippingServiceDefault',
+                ],
+            ],
         ]; //example data
         $response = $mwsMerchantFulfillment->createShipment($data);
         $this->assertIsArray($response);
@@ -144,7 +144,7 @@ class MWSMerchantFulfillmentTest extends TestCase
         $client = new Client(['handler' => $handlerStack]);
         $mwsClient = new MWSClient($client);
         $mwsMerchantFulfillment = new MWSMerchantFulfillment($mwsClient);
-         //example data
+        //example data
         $response = $mwsMerchantFulfillment->getShipment('6f77095e-9f75-47eb-aaab-a42d5428fa1a');
         $this->assertIsArray($response);
         $this->assertArrayHasKey('request_id', $response);
@@ -166,7 +166,7 @@ class MWSMerchantFulfillmentTest extends TestCase
         $client = new Client(['handler' => $handlerStack]);
         $mwsClient = new MWSClient($client);
         $mwsMerchantFulfillment = new MWSMerchantFulfillment($mwsClient);
-         //example data
+        //example data
         $response = $mwsMerchantFulfillment->cancelShipment('6f77095e-9f75-47eb-aaab-a42d5428fa1a');
         $this->assertIsArray($response);
         $this->assertArrayHasKey('request_id', $response);
@@ -191,15 +191,15 @@ class MWSMerchantFulfillmentTest extends TestCase
         $data = [
             'OrderId' => 'XXX-XXXXXXX-XXXXXXX',
             'ShippingServiceId' => 'FEDEX_PTP_PRIORITY_OVERNIGHT',
-            "ShipFromAddress" => [
-                    'Name' => 'FOO GmbH',
-                    'AddressLine1' => 'Bar Str.11',
-                    'City' => 'Minden',
-                    'StateOrProvinceCode' => 'NRW',
-                    'PostalCode' => '32423',
-                    'CountryCode' => 'DE',
-                    'Email' => 'foo@example.com',
-                    'Phone' => '123456789'
+            'ShipFromAddress' => [
+                'Name' => 'FOO GmbH',
+                'AddressLine1' => 'Bar Str.11',
+                'City' => 'Minden',
+                'StateOrProvinceCode' => 'NRW',
+                'PostalCode' => '32423',
+                'CountryCode' => 'DE',
+                'Email' => 'foo@example.com',
+                'Phone' => '123456789',
             ],
         ]; //example data
         $response = $mwsMerchantFulfillment->getAdditionalSellerInputs($data);
@@ -223,7 +223,7 @@ class MWSMerchantFulfillmentTest extends TestCase
         $client = new Client(['handler' => $handlerStack]);
         $mwsClient = new MWSClient($client);
         $mwsMerchantFulfillment = new MWSMerchantFulfillment($mwsClient);
-         //example data
+        //example data
         $response = $mwsMerchantFulfillment->getServiceStatus();
         $this->assertIsArray($response);
         $this->assertArrayHasKey('request_id', $response);
