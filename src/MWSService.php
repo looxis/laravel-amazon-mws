@@ -24,11 +24,6 @@ class MWSService
         return new MWSMerchantFulfillment($this->mwsClient);
     }
 
-    public function reports()
-    {
-        return new MWSReports($this->mwsClient);
-    }
-
     public function setMarketPlaces($countries)
     {
         $countries = is_array($countries) ? $countries : func_get_args();
