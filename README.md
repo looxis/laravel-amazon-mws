@@ -396,11 +396,11 @@ Endpoint List:
 - [ ] FulFillment Outbound Shipment ([MWS Documentation Overview](https://docs.developer.amazonservices.com/en_US/fba_outbound/FBAOutbound_Overview.html))
 - [X] Merchant Fulfillment ([MWS Documentation Overview](https://docs.developer.amazonservices.com/en_US/merch_fulfill/MerchFulfill_Overview.html))
     - [X] GetEligibleShippingServices
-    - [ ] GetAdditionalSellerInputs
+    - [X] GetAdditionalSellerInputs
     - [X] CreateShipment
     - [X] GetShipment
     - [X] CancelShipment
-    - [ ] GetServiceStatus
+    - [X] GetServiceStatus
 - [ ] Products ([MWS Documentation Overview](https://docs.developer.amazonservices.com/en_US/products/Products_Overview.html))
 - [ ] Recommendations ([MWS Documentation Overview](https://docs.developer.amazonservices.com/en_US/recommendations/Recommendations_Overview.html))
 - [ ] Reports ([MWS Documentation Overview](https://docs.developer.amazonservices.com/en_US/reports/Reports_Overview.html))
