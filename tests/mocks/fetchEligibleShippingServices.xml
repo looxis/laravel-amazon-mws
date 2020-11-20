@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<GetEligibleShippingServicesResponse
+    xmlns="https://mws.amazonservices.com/MerchantFulfillment/2015-06-01">
+    <GetEligibleShippingServicesResult>
+        <ShippingServiceList>
+            <ShippingService>
+                <ShippingServiceName>UPS Ground</ShippingServiceName>
+                <CarrierName>UPS</CarrierName>
+                <ShippingServiceId>UPS_PTP_GND</ShippingServiceId>
+                <ShippingServiceOfferId>ly51yzA1nAXlJzmYlKaH+7WbKOWz2BTujIOPx5PU8luilmZYK/JFhbx177aKey8MdZcG90uABbT5q8WAgPI+uxcxx/XDtIbI7c161j5spbfsiPTwIJg4Bk66bnP6Ip+JJtuSU5++rAdv4mzXvKpisLGYGrc+FuJvBAjTersJhq4=</ShippingServiceOfferId>
+                <ShipDate>10/16/2018 07:41:12</ShipDate>
+                <EarliestEstimatedDeliveryDate>10/18/2018 02:00:00</EarliestEstimatedDeliveryDate>
+                <LatestEstimatedDeliveryDate>10/18/2018 02:00:00</LatestEstimatedDeliveryDate>
+                <Rate>
+                    <CurrencyCode>USD</CurrencyCode>
+                    <Amount>16.83</Amount>
+                </Rate>
+                <ShippingServiceOptions>
+                    <DeliveryExperience>DeliveryConfirmationWithoutSignature</DeliveryExperience>
+                    <CarrierWillPickUp>False</CarrierWillPickUp>
+                </ShippingServiceOptions>
+                <AvailableLabelFormats>
+                    <LabelFormat>ZPL203</LabelFormat>
+                    <LabelFormat>ShippingServiceDefault</LabelFormat>
+                    <LabelFormat>PDF</LabelFormat>
+                    <LabelFormat>PNG</LabelFormat>
+                </AvailableLabelFormats>
+                <RequiresAdditionalSellerInputs>False</RequiresAdditionalSellerInputs>
+            </ShippingService>
+        </ShippingServiceList>
+        <RejectedShippingServiceList>
+            <RejectedShippingService>
+                <CarrierName>UPS</CarrierName>
+                <ShippingServiceId>UPS_PTP_3DS</ShippingServiceId>
+                <RejectionReasonCode>INELIGIBLE</RejectionReasonCode>
+                <RejectionReasonMessage>This ship method is not eligible for this
+                    order.</RejectionReasonMessage>
+                <ShippingServiceName>UPS Three Day Saver</ShippingServiceName>
+            </RejectedShippingService>
+        </RejectedShippingServiceList>
+        <TemporarilyUnavailableCarrierList>
+            <TemporarilyUnavailableCarrier>
+                <CarrierName>DYNAMEX</CarrierName>
+            </TemporarilyUnavailableCarrier>
+            <TemporarilyUnavailableCarrier>
+                <CarrierName>USPS</CarrierName>
+            </TemporarilyUnavailableCarrier>
+            <TemporarilyUnavailableCarrier>
+                <CarrierName>DHLECOMMERCE</CarrierName>
+            </TemporarilyUnavailableCarrier>
+            <TemporarilyUnavailableCarrier>
+                <CarrierName>SELF_DELIVERY</CarrierName>
+            </TemporarilyUnavailableCarrier>
+            <TemporarilyUnavailableCarrier>
+                <CarrierName>ONTRAC</CarrierName>
+            </TemporarilyUnavailableCarrier>
+            <TemporarilyUnavailableCarrier>
+                <CarrierName>DHLMX</CarrierName>
+            </TemporarilyUnavailableCarrier>
+            <TemporarilyUnavailableCarrier>
+                <CarrierName>DHLM</CarrierName>
+            </TemporarilyUnavailableCarrier>
+            <TemporarilyUnavailableCarrier>
+                <CarrierName>FEDEX</CarrierName>
+            </TemporarilyUnavailableCarrier>
+        </TemporarilyUnavailableCarrierList>
+        <TermsAndConditionsNotAcceptedCarrierList>
+            <TermsAndConditionsNotAcceptedCarrier>
+                <CarrierName>AMZN_US</CarrierName>
+            </TermsAndConditionsNotAcceptedCarrier>
+            <TermsAndConditionsNotAcceptedCarrier>
+                <CarrierName>ONTRAC</CarrierName>
+            </TermsAndConditionsNotAcceptedCarrier>
+        </TermsAndConditionsNotAcceptedCarrierList>
+    </GetEligibleShippingServicesResult>
+    <ResponseMetadata>
+        <RequestId>5b7997fb-efd1-495b-b7db-03ecfa691038</RequestId>
+    </ResponseMetadata>
+</GetEligibleShippingServicesResponse>

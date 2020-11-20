@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GetAdditionalSellerInputsResponse xmlns="https://mws.amazonservices.com/MerchantFulfillment/2015-06-01">
+    <GetAdditionalSellerInputsResult>
+        <ShipmentLevelFields/>
+        <ItemLevelFieldsList>
+            <member>
+                <Asin>B004U9TL66</Asin>
+                <AdditionalInputs/>
+            </member>
+        </ItemLevelFieldsList>
+    </GetAdditionalSellerInputsResult>
+    <ResponseMetadata>
+        <RequestId>308c41e1-6de4-11e9-9856-5df3f6909c79</RequestId>
+    </ResponseMetadata>
+</GetAdditionalSellerInputsResponse>

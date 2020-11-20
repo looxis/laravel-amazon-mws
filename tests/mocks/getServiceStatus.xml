@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<GetServiceStatusResponse xmlns="https://mws.amazonservices.com/MerchantFulfillment/2015-06-01">
+    <GetServiceStatusResult>
+        <Status>GREEN</Status>
+        <Timestamp>2015-07-01421:38:09.676Z</Timestamp>
+    </GetServiceStatusResult>
+    <ResponseMetadata>
+        <RequestId>d80c6c7b-f7c7-4fa7-bdd7-854711cb3bcc</RequestId>
+    </ResponseMetadata>
+</GetServiceStatusResponse>

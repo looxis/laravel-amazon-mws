@@ -12,6 +12,11 @@ This package is under development. Currently we have only implemented the endpoi
 Feel free to add the endpoints you need ([contribute](#contributing)).
 A List of all available endpoints you can see under the endpoint [road map](#road-map).
 
+🚨 Amazon Introduced a new [Selling Partner API](https://developer.amazonservices.com/)
+A modernized suite of REST APIs utilizing standards. [Github Docs](https://github.com/amzn/selling-partner-api-docs)
+The laravel-amazon-mws package provides only methods for the Amazon MWS service.
+We will add a laravel package for the SP-Api next year (2021).
+
 ## Contents
 
 - [Installation](#installation)
@@ -26,6 +31,13 @@ A List of all available endpoints you can see under the endpoint [road map](#roa
     - [Feeds](#feeds)
 	    - [Submit Feed](#submit-feed)
         - [Get Feed Submission Result](#get-feed-submission-result)
+    - [Merchant Fulfillment](#merchant-fulfillment)
+        - [Get Eligible Shipping Services](#get-eligible-shipping-services)
+        - [Get Shipment](#get-shipment)
+        - [Create Shipment](#create-shipment)
+        - [Cancel Shipment](#cancel-shipment)
+        - [Get Additional Seller Inputs](#get-additional-seller-inputs)
+        - [Get Service Status](#get-merchant-fulfillment-service-status)
     - [Responses](#responses)
     - [Exceptions](#exceptions)
 - [Road Map](#road-map)
@@ -231,6 +243,108 @@ SubmitFeedResponse Example:
 ]
 ```
 
+
+<a name="merchant-fulfillment"></a>
+### Merchant Fulfillment
+With the Merchant Fulfillment service, you can build applications that let sellers purchase shipping for non-Prime and Prime orders using Amazon’s Buy Shipping Services.
+
+[Amazon MWS Merchant Fulfillment Documentation Overview](https://docs.developer.amazonservices.com/en_US/merch_fulfill/MerchFulfill_Overview.html)
+
+<a name="get-eligible-shipping-services"></a>
+#### Get Eligible Shipping Services
+Returns a list of shipping service offers.
+[MWS Get Eligible Shipping Services Documentation](https://docs.developer.amazonservices.com/en_US/merch_fulfill/MerchFulfill_GetEligibleShippingServices.html)
+
+Fill the params with the [ShipmentRequestDetails](https://docs.developer.amazonservices.com/en_US/merch_fulfill/MerchFulfill_Datatypes.html#ShipmentRequestDetails) and the [ShippingOfferingFilter](https://docs.developer.amazonservices.com/en_US/merch_fulfill/MerchFulfill_Datatypes.html#ShippingOfferingFilter)
+
+```php
+$params = [
+    'ShipmentRequestDetails' => [...],
+    'ShippingOfferingFilter' => [...]
+];
+$response = AmazonMWS::merchantFulfillment()->getEligibleShippingServices($params);
+```
+##### Throttling
+- maximum request quota of 10 and a restore rate of 5 requests every second.
+[MWS Throttling Algorithm](https://docs.developer.amazonservices.com/en_US/dev_guide/DG_Throttling.html)
+- Throws a ServerException with `Request is throttled`
+
+<a name="get-shipment"></a>
+#### Get Shipment
+Returns an existing shipment for a given identifier.
+[MWS Get Shipment Documentation](https://docs.developer.amazonservices.com/en_US/merch_fulfill/MerchFulfill_GetShipment.html)
+
+```php
+$response = AmazonMWS::merchantFulfillment()->getShipment($shipmentId);
+```
+##### Throttling
+- maximum request quota of 10 and a restore rate of 5 requests every second.
+[MWS Throttling Algorithm](https://docs.developer.amazonservices.com/en_US/dev_guide/DG_Throttling.html)
+- Throws a ServerException with `Request is throttled`
+
+<a name="create-shipment"></a>
+#### Create Shipment
+The CreateShipment operation purchases shipping and returns PDF, PNG, or ZPL document data for a shipping label, depending on the carrier.
+[MWS Create Shipment Documentation](https://docs.developer.amazonservices.com/en_US/merch_fulfill/MerchFulfill_CreateShipment.html)
+
+```php
+$data = [
+    'ShippingServiceId' => 'shipment-service-id', //get the shipment id with getEligibleShippingServices()
+    'ShipmentRequestDetails' => [...],
+];
+$response = AmazonMWS::merchantFulfillment()->createShipment($data);
+```
+##### Throttling
+- maximum request quota of 10 and a restore rate of 5 requests every second.
+[MWS Throttling Algorithm](https://docs.developer.amazonservices.com/en_US/dev_guide/DG_Throttling.html)
+- Throws a ServerException with `Request is throttled`
+
+<a name="cancel-shipment"></a>
+#### Cancel Shipment
+Cancels an existing shipment.
+[MWS Cancel Shipment Documentation](https://docs.developer.amazonservices.com/en_US/merch_fulfill/MerchFulfill_CancelShipment.html)
+
+```php
+$shipmentId = '1234xx1231xx1234';
+$response = AmazonMWS::merchantFulfillment()->cancelShipment($shipmentId);
+```
+##### Throttling
+- maximum request quota of 10 and a restore rate of 5 requests every second.
+[MWS Throttling Algorithm](https://docs.developer.amazonservices.com/en_US/dev_guide/DG_Throttling.html)
+- Throws a ServerException with `Request is throttled`
+
+<a name="get-additional-seller-inputs"></a>
+#### Get Additional Seller Inputs
+Returns a list of additional seller inputs that are required from the seller to purchase the shipping service that you specify.
+[MWS Get Additional Seller Inputs Documentation](https://docs.developer.amazonservices.com/en_US/merch_fulfill/MerchFulfill_GetAdditionalSellerInputs.html)
+
+```php
+$data = [
+    'OrderId' => 'XXX-XXXXXXX-XXXXXXX',
+    'ShippingServiceId' => 'shipment-service-id', //get the shipment id with getEligibleShippingServices()
+    'ShippingFromAddress' => [...],
+];
+$response = AmazonMWS::merchantFulfillment()->getAdditionalSellerInputs($data);
+```
+##### Throttling
+- maximum request quota of 10 and a restore rate of 5 requests every second.
+[MWS Throttling Algorithm](https://docs.developer.amazonservices.com/en_US/dev_guide/DG_Throttling.html)
+- Throws a ServerException with `Request is throttled`
+
+<a name="get-merchant-fulfillment-service-status"></a>
+#### Get Service Status
+Returns the operational status of the Merchant Fulfillment service.
+[MWS Get Service Status Documentation](https://docs.developer.amazonservices.com/en_US/merch_fulfill/MWS_GetServiceStatus.html)
+
+```php
+$response = AmazonMWS::merchantFulfillment()->getServiceStatus();
+```
+##### Throttling
+- maximum request quota of 2 and a restore rate of 1 request every 5 seconds.
+[MWS Throttling Algorithm](https://docs.developer.amazonservices.com/en_US/dev_guide/DG_Throttling.html)
+- Throws a ServerException with `Request is throttled`
+
+
 <a name="responses"></a>
 ### General Responses
 
@@ -280,7 +394,13 @@ Endpoint List:
 - [ ] FulFillment Inbound Shipment ([MWS Documentation Overview](https://docs.developer.amazonservices.com/en_US/fba_inbound/FBAInbound_Overview.html))
 - [ ] FulFillment Inventory ([MWS Documentation Overview](https://docs.developer.amazonservices.com/en_US/fba_inventory/FBAInventory_Overview.html))
 - [ ] FulFillment Outbound Shipment ([MWS Documentation Overview](https://docs.developer.amazonservices.com/en_US/fba_outbound/FBAOutbound_Overview.html))
-- [ ] Merchant Fulfillment ([MWS Documentation Overview](https://docs.developer.amazonservices.com/en_US/merch_fulfill/MerchFulfill_Overview.html))
+- [X] Merchant Fulfillment ([MWS Documentation Overview](https://docs.developer.amazonservices.com/en_US/merch_fulfill/MerchFulfill_Overview.html))
+    - [X] GetEligibleShippingServices
+    - [X] GetAdditionalSellerInputs
+    - [X] CreateShipment
+    - [X] GetShipment
+    - [X] CancelShipment
+    - [X] GetServiceStatus
 - [ ] Products ([MWS Documentation Overview](https://docs.developer.amazonservices.com/en_US/products/Products_Overview.html))
 - [ ] Recommendations ([MWS Documentation Overview](https://docs.developer.amazonservices.com/en_US/recommendations/Recommendations_Overview.html))
 - [ ] Reports ([MWS Documentation Overview](https://docs.developer.amazonservices.com/en_US/reports/Reports_Overview.html))
