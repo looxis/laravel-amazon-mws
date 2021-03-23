@@ -9,6 +9,7 @@ class MWSFeeds
     protected $client;
     protected $content;
     protected $type;
+    protected $params = [];
 
     public function __construct(MWSClient $client)
     {
@@ -18,6 +19,18 @@ class MWSFeeds
     public function getContent()
     {
         return $this->content;
+    }
+
+    public function setParams($params)
+    {
+        $this->params = $params;
+
+        return $this;
+    }
+
+    public function getParams()
+    {
+        return $this->params;
     }
 
     public function setContent($content)
@@ -42,12 +55,11 @@ class MWSFeeds
     public function submit($purgeAndReplace = false, $amazonOrderId = null, $documentType = null)
     {
         $contentmd5Hash = base64_encode(md5($this->getContent(), true));
-        $params = [
+        $params = array_merge([
             'FeedType' => $this->type,
             'PurgeAndReplace' => $purgeAndReplace,
             'ContentMD5Value' => $contentmd5Hash,
-        ];
-
+        ], $this->getParams());
         $response = $this->client->post('SubmitFeed', '/', self::VERSION, $params, $this->getContent());
 
         return $this->parseSubmitFeedResponse($response);

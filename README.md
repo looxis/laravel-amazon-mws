@@ -30,6 +30,7 @@ We will add a laravel package for the SP-Api next year (2021).
         - [List Order Items](#list-order-items)
     - [Feeds](#feeds)
 	    - [Submit Feed](#submit-feed)
+        - [Submit Invoice Feed](#submit-invoice-feed)
         - [Get Feed Submission Result](#get-feed-submission-result)
     - [Merchant Fulfillment](#merchant-fulfillment)
         - [Get Eligible Shipping Services](#get-eligible-shipping-services)
@@ -189,6 +190,42 @@ $response = AmazonMWS::feeds()
 - Hourly request quote: 30
 [MWS Throttling Algorithm](https://docs.developer.amazonservices.com/en_US/dev_guide/DG_Throttling.html)
 - Throws a ServerException with `Request is throttled`
+
+<a name="submit-invoice-feed"></a>
+#### Submit Invoice Feed (VAT)
+You can upload invoices using _UPLOAD_VAT_INVOICE_ Feed Type via Feeds API. Use the SubmitFeed
+operation with the below mentioned parameters to submit an invoice for an order.
+
+[Invoice Uploader developer documentation](https://m.media-amazon.com/images/G/03/B2B/invoice-uploader-developer-documentation.pdf)
+
+```php
+// File Content
+$invoiceFileContent = \File::get(storage_path('invoice.pdf'));
+
+// Feed Options
+$params = [
+    'orderid' => 'XXX-XXXXXXX-XXXXXXX', //Amazon Order Id
+    'invoicenumber' => 'R21-1234', //Your Invoice Number
+    'documenttype' => 'Invoice'
+];
+
+// Generate Feed Option metadata from params
+$feedOptions = collect($params)->map(function($param, $key) {
+            return "metadata:{$key}={$param}";
+        })->values()->implode(';');
+        
+// Submit
+$response = AmazonMWS::feeds()
+                ->setType("_UPLOAD_VAT_INVOICE_")
+                ->setContent($invoiceFileContent)
+                ->setParams([
+                    'FeedOptions' => $feedOptions
+                ])
+                ->submit();
+```
+##### Throttling
+For the feed type _UPLOAD_VAT_INVOICE_, the throttle limit is 1 invoice upload per 3 seconds, or 20 invoices per minute,
+or 1200 invoices per hour, or 28800 invoices per day.
 
 ##### Responses
 The Amazon MWS XML responses are parsed and will be casted into a convenient array structure.
@@ -384,6 +421,7 @@ Endpoint List:
     - [ ] Orders Datatypes
 - [X] Feeds ([MWS Documentation Overview](https://docs.developer.amazonservices.com/en_US/feeds/Feeds_Overview.html))
     - [X] SubmitFeed
+    - [X] Submit Invoice VAT Feed
     - [ ] GetFeedSubmissionList
     - [ ] GetFeedSubmissionListByNextToken
     - [ ] GetFeedSubmissionCount

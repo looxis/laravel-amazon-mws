@@ -202,18 +202,26 @@ class MWSClient
             'SignatureVersion' => $this->getSignatureVersion(),
             'Version' => $version,
         ];
-        $queryParameters = array_merge($queryParameters, $this->getMarketPlaceParams());
+        $type = data_get($params, 'FeedType');
+        $queryParameters = array_merge($queryParameters, $this->getMarketPlaceParams($type));
         $queryParameters = array_merge($queryParameters, Arr::dot($params));
         ksort($queryParameters);
 
         return $queryParameters;
     }
 
-    public function getMarketPlaceParams()
+    public function getMarketPlaceParams($type = null)
     {
         $params = [];
         foreach ($this->marketPlaces as $index => $marketPlace) {
-            $keyName = 'MarketplaceId.Id.'.($index + 1);
+
+            if ($type === '_UPLOAD_VAT_INVOICE_') {
+                $marketPlaceKeyName = 'MarketplaceIdList.Id.';
+            } else {
+                $marketPlaceKeyName = 'MarketplaceId.Id.';
+            }
+
+            $keyName = $marketPlaceKeyName.($index + 1);
             $params[$keyName] = $this->countries[$marketPlace];
         }
 
