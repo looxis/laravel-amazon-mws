@@ -252,6 +252,7 @@ Returns the feed processing report and the Content-MD5 header.
 Pass the Feed Submission Id as a parameter to retrieve the feed result
 Amazon MWS Description [GetFeedSubmissionResult](https://docs.developer.amazonservices.com/en_US/feeds/Feeds_GetFeedSubmissionResult.html)
 
+_Warning: Invoice Feed Submission Results are returning blank strings instead of a SubmitFeedResponse_
 ```php
 $response = AmazonMWS::feeds()
                 ->getFeedSubmissionResult($feedSubmissionId);

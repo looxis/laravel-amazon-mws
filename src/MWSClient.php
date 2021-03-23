@@ -184,9 +184,14 @@ class MWSClient
         ];
         $uri = 'https://'.$this->getDomain().$path;
         $response = $this->client->post($uri, $requestOptions);
-        $xmlResponse = simplexml_load_string($response->getBody()->getContents());
-        $json = json_encode($xmlResponse);
 
+        $xmlResponse = simplexml_load_string($response->getBody()->getContents(), 'SimpleXMLElement', LIBXML_NOWARNING | LIBXML_NOERROR);
+
+        if (!$xmlResponse) {
+            return (string) $response->getBody();
+        }
+
+        $json = json_encode($xmlResponse);
         return json_decode($json, true);
     }
 

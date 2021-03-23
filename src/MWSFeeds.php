@@ -89,6 +89,10 @@ class MWSFeeds
 
     protected function parseSubmissionResultResponse($response)
     {
+        if (is_null(data_get($response, 'Message.ProcessingReport.StatusCode'))) {
+            return (string) $response;
+        }
+
         return [
             'status_code' => data_get($response, 'Message.ProcessingReport.StatusCode'),
             'processing_summary' => data_get($response, 'Message.ProcessingReport.ProcessingSummary'),
