@@ -214,7 +214,6 @@ class MWSClient
     {
         $params = [];
         foreach ($this->marketPlaces as $index => $marketPlace) {
-
             if ($type === '_UPLOAD_VAT_INVOICE_') {
                 $marketPlaceKeyName = 'MarketplaceIdList.Id.';
             } else {
