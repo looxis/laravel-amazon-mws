@@ -191,11 +191,12 @@ class MWSClient
 
         $xmlResponse = simplexml_load_string($response->getBody()->getContents(), 'SimpleXMLElement', LIBXML_NOWARNING | LIBXML_NOERROR);
 
-        if (!$xmlResponse) {
+        if (! $xmlResponse) {
             return (string) $response->getBody();
         }
 
         $json = json_encode($xmlResponse);
+
         return json_decode($json, true);
     }
 
