@@ -41,6 +41,8 @@ class MWSClient
         'A39IBJ37TRP1C6' => 'mws.amazonservices.com.au',
         'A1VC38T7YXB528' => 'mws.amazonservices.jp',
         'A1805IZSGTT6HS' => 'mws-eu.amazonservices.com',
+        'A1C3SOZRARQ6R3' => 'mws-eu.amazonservices.com',
+        'A2NODRKZP88ZB9' => 'mws-eu.amazonservices.com',
     ];
 
     protected $countries = [
@@ -62,6 +64,8 @@ class MWSClient
         'AU' => 'A39IBJ37TRP1C6',
         'JP' => 'A1VC38T7YXB528',
         'NL' => 'A1805IZSGTT6HS',
+        'PL' => 'A1C3SOZRARQ6R3',
+        'SE' => 'A2NODRKZP88ZB9',
     ];
 
     public function __construct(Client $client = null)
